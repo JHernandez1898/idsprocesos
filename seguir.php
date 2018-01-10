@@ -36,19 +36,19 @@ switch($paso){
 		header("Location: paso10.php?ref=$ref");
 	break;
 	case "11":
-		header("Location: 'paso11.php'");
+		header("Location: paso11.php?ref=$ref");
 	break;
 	case "12":
-		header("Location: 'paso12.php'");
+		header("Location: paso12.php?ref=$ref");
 	break;
 	case "13":
-		header("Location: 'paso13.php'");
+		header("Location: paso13.php?ref=$ref");
 	break;
 	case "14":
-		header("Location: 'paso14.php'");
+		header("Location: paso14.php?ref=$ref");
 	break;
 	case "15":
-		header("Location: 'paso15.php'");
+		header("Location: paso15.php?ref=$ref");
 	break;
 	
 }

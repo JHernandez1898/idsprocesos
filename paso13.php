@@ -4,17 +4,15 @@ require("conect.php");
 $idCone=  conectar();
 $ref =  $_GET["ref"];
 if($_POST){
-$fechaini  =strtotime($_POST["fechaini"]);
-$horain =$_POST["horaini"];
-$fechafin  =strtotime($_POST["fechafin"]);
-$horafin  =$_POST["horafin"];
-$iniciales  =$_POST["iniciales"];
-$sql = "INSERT INTO pasouno VALUES('$fechaini','$fechafin','$horain','$horafin','$iniciales','$ref')";
-$update = "UPDATE referencias SET paso = '2' WHERE(REF like '$ref') ";
+$uno  =strtotime($_POST["uno"]);
+$iuno =$_POST["iuno"];
+
+$sql = "INSERT INTO pasosiete VALUES('$ref','$uno','$iuno')";
+$update = "UPDATE referencias SET paso = '8' WHERE(REF like '$ref') ";
 $queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
 if($query&&$queryu){
-	header("Location: paso2.php?ref=$ref");
+	header("Location: paso8.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);
 }

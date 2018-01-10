@@ -4,17 +4,15 @@ require("conect.php");
 $idCone=  conectar();
 $ref =  $_GET["ref"];
 if($_POST){
-$fechaini  =strtotime($_POST["fechaini"]);
-$horain =$_POST["horaini"];
-$fechafin  =strtotime($_POST["fechafin"]);
-$horafin  =$_POST["horafin"];
-$iniciales  =$_POST["iniciales"];
-$sql = "INSERT INTO pasouno VALUES('$fechaini','$fechafin','$horain','$horafin','$iniciales','$ref')";
-$update = "UPDATE referencias SET paso = '2' WHERE(REF like '$ref') ";
+$uno  =strtotime($_POST["uno"]);
+$iuno =$_POST["iuno"];
+
+$sql = "INSERT INTO pasodoce VALUES('$ref','$uno','$iuno')";
+$update = "UPDATE referencias SET paso = '13' WHERE(REF like '$ref') ";
 $queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
 if($query&&$queryu){
-	header("Location: paso2.php?ref=$ref");
+	header("Location: paso13.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);
 }
@@ -48,9 +46,9 @@ if($query&&$queryu){
             </span></p></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="datetime-local" id="datetime-local">
+              <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iniciales" required></td>
+            <td><input type="text" class="input-sm" name="iuno" required></td>
           </tr>
         </tbody>
       </table>

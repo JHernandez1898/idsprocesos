@@ -4,17 +4,16 @@ require("conect.php");
 $idCone=  conectar();
 $ref =  $_GET["ref"];
 if($_POST){
-$fechaini  =strtotime($_POST["fechaini"]);
-$horain =$_POST["horaini"];
-$fechafin  =strtotime($_POST["fechafin"]);
-$horafin  =$_POST["horafin"];
-$iniciales  =$_POST["iniciales"];
-$sql = "INSERT INTO pasouno VALUES('$fechaini','$fechafin','$horain','$horafin','$iniciales','$ref')";
-$update = "UPDATE referencias SET paso = '2' WHERE(REF like '$ref') ";
+$uno =  strtotime($_POST["uno"]);
+$iuno =  $_POST["iuno"];
+$dos =  strtotime($_POST["dos"]);
+$idos = $_POST["idos"];
+$sql = "INSERT INTO pasoonce VALUES('$ref','$uno','$iuno','$dos','$idos')";
+$update = "UPDATE referencias SET paso = '12' WHERE(REF like '$ref') ";
 $queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
 if($query&&$queryu){
-	header("Location: paso2.php?ref=$ref");
+	header("Location: paso12.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);
 }
@@ -47,17 +46,17 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">*Elaborar EEI, relacion de carga y orden de remisión.</span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="datetime-local" id="datetime-local">
+              <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iniciales" required></td>
+            <td><input type="text" class="input-sm" name="iuno" required></td>
           </tr>
           <tr>
             <td><span class="alert-info text-info" style="text-align:left">*Integrar al expediente losdocumentos (EEI y orden de remision) comprobantes y las indicaciones para su facturación.</span></td>
             <td><p>
               <label for="datetime-local2">Fecha y Hora:</label>
-              <input type="datetime-local" name="datetime-local2" id="datetime-local2">
+              <input type="datetime-local" name="dos" id="datetime-local2">
             </p></td>
-            <td><input type="text" class="input-sm" name="iniciales2" required></td>
+            <td><input type="text" class="input-sm" name="idos" required></td>
           </tr>
         </tbody>
       </table>
