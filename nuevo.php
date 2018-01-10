@@ -33,7 +33,7 @@ $query =  mysqli_query($idCone,$sql);
                 	<?php 
 					while($F = mysqli_fetch_array($query)){
 						?>
-                        <option value="<?php $F["razonsocial"]?>" ><?php  echo $F["razonsocial"];?></option>
+                        <option value="<?php echo $F["razonsocial"]?>" ><?php  echo $F["razonsocial"];?></option>
                         <?php
 					}
 					

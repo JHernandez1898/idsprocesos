@@ -1,6 +1,7 @@
 <?php
 include("Template.php");
 require("conect.php");
+echo $_GET["cliente"];
 $idCone =  conectar();
 $sql =  "SELECT *  FROM referencias";
 $query = mysqli_query($idCone,$sql);

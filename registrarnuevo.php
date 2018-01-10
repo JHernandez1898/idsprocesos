@@ -21,7 +21,7 @@ if($F =  mysqli_fetch_array($query)){
 $sql  ="INSERT INTO referencias VALUES('$ref','$cliente','$nref','$embarque','$pedimento','$subdivisiones','$fecnum','$hora','1')";
 $query = mysqli_query($idCone,$sql);
 if($query){
-	header("Location: index.php");
+	header("Location: index.php?cliente=$cliente");
 }
 else{
 	echo mysqli_error($idCone);
