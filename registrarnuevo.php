@@ -6,9 +6,9 @@ $cliente = $_POST["cliente"];
 $nref = $_POST["ref"];
 $embarque = $_POST["embarque"];
 $pedimento = $_POST["pedimento"];
-$fecha = $_POST["fecha"];
+$fecha = date("Y-m-d");
 $fecnum =  strtotime($fecha);
-$hora = $_POST["hora"];
+$hora = date("H:i:s");
 $subdivisiones = $_POST["subdivisiones"];
 
 $sql =  "SELECT MAX(REF) as MREF FROM referencias";

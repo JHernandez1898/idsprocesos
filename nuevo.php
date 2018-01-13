@@ -57,13 +57,7 @@ $query =  mysqli_query($idCone,$sql);
     	      <tr>
     	        <td><p>SUBDIVISIONES</p>
    	            <p><input type="text" class="input-sm" name = "subdivisiones"></p></td>
-    	        <td><p>FECHA</p>
-   	            <p><input type="date" class="input-sm" name = "fecha"></p></td>
-  	        </tr>
-    	      <tr>
-    	        <td><p>HORA</p>
-   	            <p><input type="time" class="input-sm" name = "hora"></p></td>
-    	        <td>&nbsp;</td>
+    	        <td><p>&nbsp;</p></td>
   	        </tr>
   	      </tbody>
   	    </table>

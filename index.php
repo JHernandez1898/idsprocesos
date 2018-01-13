@@ -39,12 +39,7 @@ $query = mysqli_query($idCone,$sql);
         	      <td>N°</td>
         	      <td>CLIENTE</td>
         	      <td>REFERENCIA</td>
-        	      <td>EMBARQUE</td>
-        	      <td>PEDIMENTO</td>
-        	      <td>SUBDIVISIONES</td>
-        	      <td>FECHA</td>
-        	      <td>HORA</td>
-        	      <td>PASO ACTUAL</td>
+        	    
         	      <td></td>
         	      <td>&nbsp;</td>
       	      </tr>
@@ -54,24 +49,26 @@ $query = mysqli_query($idCone,$sql);
         	      <td><?php  echo $F["REF"]; ?></td>
         	      <td><?php  echo $F["CLIENTE"]; ?></td>
         	      <td><?php  echo $F["NREF"]; ?></td>
-        	      <td><?php  echo $F["EMBARQUE"]; ?></td>
-        	      <td><?php  echo $F["PEDIMENTO"]; ?></td>
-        	      <td><?php  echo $F["SUBDIVISIONES"]; ?></td>
-        	      <td><?php  echo date("Y-m-d",$F["FECNUM"]); ?></td>
-        	      <td><?php  echo $F["HORA"]; ?></td>
-        	      <td><?php  echo $F["PASO"]; ?></td>
+       
+        	      
         	      <td>
+                  
                   	<form action ="seguir.php" method="post">
                     	<input type="hidden" name="ref" value="<?php echo $F["REF"]; ?>">
                     	<input type="hidden" name="paso" value="<?php echo $F["PASO"]; ?>">
                         <input type="hidden" name="fecha" value="<?php echo $F["FECNUM"]; ?>">
                     	<input type="submit" class="btn btn-sm btn-success" value="Continuar">
                     </form>
+                
+				  
+                    
                    </td>
         	      <td>
-                  <form action ="detalles.php">
-                    	<input type="submit" class="btn btn-sm btn-info" value="Detalles">
-                    </form>
+                  <?php $ref = $F["REF"];
+                  echo "<a href='detalles.php?ref=$ref'?>";
+                  echo "<input type='submit' class='btn btn-sm btn-info' value='Detalles'>";
+				  echo "</a>";
+                    ?>
                   	</td>
       	      </tr>
               <?php  } ?>

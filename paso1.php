@@ -60,15 +60,32 @@ if($query&&$queryu){
               <label for="datetime-local">Fecha y Hora:</label>
               <input type="datetime-local"    name="uno" class="input-sm" required>
             </p></td>
-            <td><input type="text" class="input-sm" name="inicialesuno" required></td>
+            <td>
+            <select  class="input-sm" name="inicialesuno" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
           <tr>
-            <td><span class="alert-info text-info" style="text-align:left">*Recepcion de Documentos </span></td>
+            <td height="50"><span class="alert-info text-info" style="text-align:left">*Recepcion de Documentos </span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
               <input type="datetime-local"  name="fechados" required>
             </p></td>
-            <td><input type="text" class="input-sm" name="inicialesdos" required></td>
+            <td><select  class="input-sm" name="inicialesdos" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
         </tbody>
       </table>

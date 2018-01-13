@@ -7,12 +7,12 @@ if($_POST){
 $uno  =strtotime($_POST["uno"]);
 $iuno =$_POST["iuno"];
 
-$sql = "INSERT INTO pasosiete VALUES('$ref','$uno','$iuno')";
-$update = "UPDATE referencias SET paso = '8' WHERE(REF like '$ref') ";
+$sql = "INSERT INTO pasotrece VALUES('$ref','$uno','$iuno')";
+$update = "UPDATE referencias SET paso = '14' WHERE(REF like '$ref') ";
 $queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
 if($query&&$queryu){
-	header("Location: paso8.php?ref=$ref");
+	header("Location: paso14.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);
 }
@@ -48,9 +48,17 @@ if($query&&$queryu){
             </span></p></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="datetime-local" id="datetime-local">
+              <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iniciales" required></td>
+            <td><select  class="input-sm" name="iuno" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
         </tbody>
       </table>

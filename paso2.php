@@ -33,6 +33,9 @@ if($query&&$queryu){
    	  <h1 class="page-header" style="text-align:center">Revisión</h1>
     </div>
     <div class="row">
+   	  <h4 class=" alert-dismissible" style="text-align:center">Responsable: Revisador</h4>
+    </div>
+    <div class="row">
     <article class="col-lg-12">
     <form accept-charset="iso-8859-7" action="#" method="post">
       <table width="591" class="table table-striped table-bordered" border="1">
@@ -49,7 +52,16 @@ if($query&&$queryu){
               <label for="datetime-local">Fecha y Hora:</label>
               <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iniciales" required></td>
+            <td>
+            <select  class="input-sm" name="iniciales" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
         </tbody>
       </table>

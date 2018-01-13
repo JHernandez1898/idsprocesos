@@ -51,14 +51,32 @@ if($query&&$queryu){
               <label for="datetime-local">Fecha y Hora:</label>
               <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iuno" required></td>
+            <td>
+            <select  class="input-sm" name="iuno" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
           <tr>
             <td><span class="alert-info text-info" style="text-align:left">* Elaborar nota de remisison y cotización<br>
 * Verificar requisistos de importación</span></td>
             <td><label for="datetime-local2">Fecha y Hora:</label>
               <input type="datetime-local" name="dos" id="datetime-local2"></td>
-            <td><input type="text" class="input-sm" name="idos" required></td>
+            <td>
+            <select  class="input-sm" name="idos" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
           <tr>
             <td><span class="alert-info text-info" style="text-align:left">*Enviar al cliente para que depositen impuestos y gastos<br>
@@ -68,7 +86,16 @@ if($query&&$queryu){
               <label for="datetime-local5">Fecha y Hora:</label>
               <input type="datetime-local" name="tres" id="datetime-local5">
             </p></td>
-            <td><input type="text" class="input-sm" name="itres" required></td>
+            <td>
+            <select  class="input-sm" name="itres" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
         </tbody>
       </table>

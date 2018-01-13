@@ -48,7 +48,16 @@ if($query&&$queryu){
               <label for="datetime-local">Fecha y Hora:</label>
               <input type="datetime-local" name="uno" id="datetime-local">
             </p></td>
-            <td><input type="text" class="input-sm" name="iuno" required></td>
+            <td>
+            <select  class="input-sm" name="iuno" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
           <tr>
             <td><span class="alert-info text-info" style="text-align:left">*Integrar al expediente losdocumentos (EEI y orden de remision) comprobantes y las indicaciones para su facturación.</span></td>
@@ -56,7 +65,16 @@ if($query&&$queryu){
               <label for="datetime-local2">Fecha y Hora:</label>
               <input type="datetime-local" name="dos" id="datetime-local2">
             </p></td>
-            <td><input type="text" class="input-sm" name="idos" required></td>
+            <td>
+            <select  class="input-sm" name="idos" required>
+            <?php 
+			$queryx = mysqli_query($idCone,"SELECT * FROM iniciales");
+			while($F =  mysqli_fetch_array($queryx)){
+			
+			?>
+            <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
+			?>
+            </select></td>
           </tr>
         </tbody>
       </table>
