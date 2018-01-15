@@ -52,12 +52,12 @@ $query = mysqli_query($idCone,$sql);
         	      
         	      <td>
                 
-                  	<form action ="seguir.php?$usu" method="post">
-                    	<input type="hidden" name="ref" value="<?php echo $F["REF"]; ?>">
-                    	<input type="hidden" name="paso" value="<?php echo $F["PASO"]; ?>">
-                        <input type="hidden" name="fecha" value="<?php echo $F["FECNUM"]; ?>">
-                    	<input type="submit" class="btn btn-sm btn-success" value="Continuar">
-                    </form>
+                  	<?php 
+					$ref = $F["REF"];
+                  echo "<a href='seguir.php?ref=$ref'>";
+                  echo "<input type='submit' class='btn btn-sm btn-success' value='Seguir'>";
+				  echo "</a>";
+                    ?>
                 
 				  
                     

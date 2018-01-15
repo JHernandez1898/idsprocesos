@@ -2,9 +2,7 @@
 require("Template.php");
 include("conect.php");
 $idCone = conectar();
-$paso = $_POST["paso"];
-$ref = $_POST["ref"];
-$fec = $_POST["fecha"];
+$ref = $_GET["ref"];
 $referencias =  mysqli_query($idCone,"SELECT * FROM referencias WHERE REF LIKE '$ref'");
 $pasouno =  mysqli_query($idCone,"SELECT * FROM pasouno WHERE REF LIKE '$ref'");
 $pasodos =  mysqli_query($idCone,"SELECT * FROM pasodos WHERE REF LIKE '$ref'");
@@ -45,7 +43,13 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
                 <?php 
 				if($F =  mysqli_fetch_array($pasouno)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["FECUNO"]);
+				
+					echo "Capturado el dia : $fecha <br>
+";
+					echo "<a href='mod1.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -65,7 +69,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
                 <?php 
 				if($F =  mysqli_fetch_array($pasodos)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["FEC"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod2.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -83,7 +92,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
                 	<?php 
 				if($F =  mysqli_fetch_array($pasotres)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["FECUNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod3.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -101,7 +115,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasocuatro)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["FECUNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod4.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -117,7 +136,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasocinco)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod5.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -133,7 +157,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasoseis)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod6.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -149,7 +178,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasosiete)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod7.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -165,7 +199,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasoocho)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod8.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -181,7 +220,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasonueve)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod9.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -197,7 +241,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasodiez)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod10.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -213,7 +262,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasoonce)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod11.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -229,7 +283,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasodoce)){
 					
-					echo "FINALIZADO";
+						$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod12.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -245,7 +304,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasotrece)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod13.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -261,7 +325,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasocatorce)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod14.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				
@@ -277,7 +346,12 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
     	        <td><?php 
 				if($F =  mysqli_fetch_array($pasoquince)){
 					
-					echo "FINALIZADO";
+					$fecha = date("Y-m-d g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod15.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
 				}
 				else{
 				

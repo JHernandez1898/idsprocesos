@@ -56,12 +56,19 @@ $query =  mysqli_query($idCone,$sql);
   	        </tr>
     	      <tr>
     	        <td><p>SUBDIVISIONES</p>
-   	            <p><input type="text" class="input-sm" name = "subdivisiones"></p></td>
-    	        <td><p>&nbsp;</p></td>
+                  <p>
+                    <input type="text" class="input-sm" name = "subdivisiones">
+                </p></td>
+    	        <td><p><?php echo "Fecha: "; echo date("Y-m-d"); ?><p></td>
+  	        </tr>
+    	      <tr>
+    	        <td><p><?php echo "Hora: "; echo date("H:s"); ?></p></td>
+    	        <td><p>
+    	          <input type="submit" class="input-sm btn btn-success" value="Registrar" name = "Cliente2">
+    	        </p></td>
   	        </tr>
   	      </tbody>
   	    </table>
-    	  <input type="submit" class="input-sm btn btn-success" name = "Cliente2">
         </form>
         </article>
     </div>
