@@ -45,7 +45,7 @@ date_default_timezone_set("America/Mexico_City");
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                	<span class="icon-bar"><img class="active" src="Recursos/login/images/avatar-01.jpg" height="50" width="50"></span> 
+                	<span class="icon-bar"><a href="index.php"><img class="active" src="Recursos/login/images/avatar-01.jpg" height="50" width="50"></a></span> 
                 	
                 </a>
             </div>
@@ -53,7 +53,7 @@ date_default_timezone_set("America/Mexico_City");
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="?Logout=yes">Cerrar Sesión</a>
