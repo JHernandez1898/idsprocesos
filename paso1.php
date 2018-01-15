@@ -3,6 +3,7 @@ include("Template.php");
 require("conect.php");
 $idCone=  conectar();
 $ref =  $_GET["ref"];
+
 if($_POST){
 $fechauno  = $_POST["uno"];
 $inicialesuno =  $_POST["inicialesuno"];
@@ -57,8 +58,8 @@ if($query&&$queryu){
 *Asignar número de entrada a bodega al embarque.<br>
 *Etiquetar bultos con código de control (EB).</span></td>
             <td><p>
-              <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local"    name="uno" class="input-sm" required>
+              <label for="datetime">Fecha y Hora:</label>
+              <input type="datetime-local" value="<?php echo date('Y-m-d\TH:i');?>"  name="uno" class="input-sm" required>
             </p></td>
             <td>
             <select  class="input-sm" name="inicialesuno" required>
@@ -75,7 +76,7 @@ if($query&&$queryu){
             <td height="50"><span class="alert-info text-info" style="text-align:left">*Recepcion de Documentos </span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local"  name="fechados" required>
+              <input type="datetime-local" class="input-sm" value = "<?php echo date('Y-m-d\TH:i')?>" name="fechados" required>
             </p></td>
             <td><select  class="input-sm" name="inicialesdos" required>
             <?php 

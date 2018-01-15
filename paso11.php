@@ -46,7 +46,7 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">*Elaborar EEI, relacion de carga y orden de remisión.</span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="uno" id="datetime-local">
+              <input type="datetime-local"  value = "<?php echo date('Y-m-d\TH:i')?>"  name="uno" id="datetime-local">
             </p></td>
             <td>
             <select  class="input-sm" name="iuno" required>
@@ -63,7 +63,7 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">*Integrar al expediente losdocumentos (EEI y orden de remision) comprobantes y las indicaciones para su facturación.</span></td>
             <td><p>
               <label for="datetime-local2">Fecha y Hora:</label>
-              <input type="datetime-local" name="dos" id="datetime-local2">
+              <input type="datetime-local" name="dos" value = "<?php echo date('Y-m-d\TH:i')?>"  id="datetime-local2">
             </p></td>
             <td>
             <select  class="input-sm" name="idos" required>

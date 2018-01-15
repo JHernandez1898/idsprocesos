@@ -46,7 +46,7 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">*Confirmar deposito de anticipo o financiamiento de impuestos..</span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="uno" id="datetime-local">
+              <input type="datetime-local" name="uno" value = "<?php echo date('Y-m-d\TH:i')?>"  id="datetime-local">
             </p></td>
             <td>
             <select  class="input-sm" name="iuno" required>
@@ -64,7 +64,7 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">*Confirmar arribo del equipo de tranporte y documentos..</span></td>
             <td><p>
               <label for="datetime-local2">Fecha y Hora:</label>
-              <input type="datetime-local" name="dos" id="datetime-local2">
+              <input type="datetime-local" name="dos" value = "<?php echo date('Y-m-d\TH:i')?>"  id="datetime-local2">
             </p></td>
             <td>
             <select  class="input-sm" name="idos" required>

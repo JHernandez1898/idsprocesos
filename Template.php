@@ -1,7 +1,9 @@
 <?php
 
 date_default_timezone_set("America/Mexico_City");
-ini_set('max_execution_time', 300);?>
+ini_set('max_execution_time', 300);
+
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
   <title>IDS NET</title>
@@ -56,6 +58,7 @@ ini_set('max_execution_time', 300);?>
        <li class="active"><a href="#">&nbsp;</a></li>
         <li class="active"><a href="#">&nbsp;</a></li>
         <li class="active"><a href="index.php">Inicio</a></li>
+        <li class="active"><a href="?Logout=yes">Cerrar Sesion</a></li>
  
         
       </ul>

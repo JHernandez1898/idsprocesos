@@ -50,7 +50,7 @@ if($query&&$queryu){
               <p><span class="alert-info text-info" style="text-align:left">*Verificar la informacion de las facturas (pesos, origine,series, etc).</span></p></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="uno" id="datetime-local">
+              <input type="datetime-local" name="uno" value = "<?php echo date('Y-m-d\TH:i')?>" id="datetime-local">
             </p></td>
             <td>
             <select  class="input-sm" name="iniciales" required>

@@ -1,7 +1,9 @@
 <?php
+session_start();
 include("Template.php");
 require("conect.php");
-
+  if (!isset($_SESSION['AdminUser']))  header('Location: login.php'); 
+  if (isset($_GET["Logout"])) { unset($_SESSION["AdminUser"]); }
 $idCone =  conectar();
 $sql =  "SELECT *  FROM referencias";
 $query = mysqli_query($idCone,$sql);
@@ -52,8 +54,8 @@ $query = mysqli_query($idCone,$sql);
        
         	      
         	      <td>
-                  
-                  	<form action ="seguir.php" method="post">
+                
+                  	<form action ="seguir.php?$usu" method="post">
                     	<input type="hidden" name="ref" value="<?php echo $F["REF"]; ?>">
                     	<input type="hidden" name="paso" value="<?php echo $F["PASO"]; ?>">
                         <input type="hidden" name="fecha" value="<?php echo $F["FECNUM"]; ?>">
@@ -65,7 +67,7 @@ $query = mysqli_query($idCone,$sql);
                    </td>
         	      <td>
                   <?php $ref = $F["REF"];
-                  echo "<a href='detalles.php?ref=$ref'?>";
+                  echo "<a href='detalles.php?ref=$ref'>";
                   echo "<input type='submit' class='btn btn-sm btn-info' value='Detalles'>";
 				  echo "</a>";
                     ?>

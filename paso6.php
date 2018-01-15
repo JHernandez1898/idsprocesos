@@ -44,7 +44,7 @@ if($query&&$queryu){
             <td><p><span class="alert-info text-info" style="text-align:left">*Revisar nota de revision reparar COVES y los e-Documents</span><span class="alert-info text-info" style="text-align:left">.</span></p></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="uno" id="datetime-local">
+              <input type="datetime-local" value = "<?php echo date('Y-m-d\TH:i')?>"  name="uno" id="datetime-local">
             </p></td>
             <td>
             <select  class="input-sm" name="iuno" required>

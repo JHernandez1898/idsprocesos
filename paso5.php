@@ -49,7 +49,7 @@ if($query&&$queryu){
             * Documentar Factura</span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" name="uno" id="datetime-local">
+              <input type="datetime-local" value = "<?php echo date('Y-m-d\TH:i')?>"  name="uno" id="datetime-local">
             </p></td>
             <td>
             <select  class="input-sm" name="iuno" required>
@@ -66,7 +66,7 @@ if($query&&$queryu){
             <td><span class="alert-info text-info" style="text-align:left">* Elaborar nota de remisison y cotización<br>
 * Verificar requisistos de importación</span></td>
             <td><label for="datetime-local2">Fecha y Hora:</label>
-              <input type="datetime-local" name="dos" id="datetime-local2"></td>
+              <input type="datetime-local"   value = "<?php echo date('Y-m-d\TH:i')?>" name="dos" id="datetime-local2"></td>
             <td>
             <select  class="input-sm" name="idos" required>
             <?php 
@@ -84,7 +84,7 @@ if($query&&$queryu){
             </span></td>
             <td><p>
               <label for="datetime-local5">Fecha y Hora:</label>
-              <input type="datetime-local" name="tres" id="datetime-local5">
+              <input type="datetime-local" value = "<?php echo date('Y-m-d\TH:i')?>"  name="tres" id="datetime-local5">
             </p></td>
             <td>
             <select  class="input-sm" name="itres" required>
