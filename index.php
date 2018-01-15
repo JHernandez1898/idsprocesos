@@ -9,9 +9,11 @@ $sql =  "SELECT *  FROM referencias";
 $query = mysqli_query($idCone,$sql);
 
 ?>
-
+<html>
+<head>
 <link href="Recursos/css/bootstrap.css" rel="stylesheet" type="text/css">
-
+</head>
+<body>
 <div class="container">
 	<div class="row">
         <h1 class="page-header" style="text-align: center">
