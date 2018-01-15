@@ -62,7 +62,7 @@ $query =  mysqli_query($idCone,$sql);
     	        <td><p><?php echo "Fecha: "; echo date("Y-m-d"); ?><p></td>
   	        </tr>
     	      <tr>
-    	        <td><p><?php echo "Hora: "; echo date("H:s"); ?></p></td>
+    	        <td><p><?php echo "Hora: "; echo date("g:i a"); ?></p></td>
     	        <td><p>
     	          <input type="submit" class="input-sm btn btn-success" value="Registrar" name = "Cliente2">
     	        </p></td>
