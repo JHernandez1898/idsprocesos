@@ -9,17 +9,14 @@ $sql =  "SELECT *  FROM referencias";
 $query = mysqli_query($idCone,$sql);
 
 ?>
-<html>
-<title></title>
+
 <link href="Recursos/css/bootstrap.css" rel="stylesheet" type="text/css">
-<head>
-</head>
-<body>
+
 <div class="container">
 	<div class="row">
-    <h1 class="page-header" style="text-align: center">
-    PROCEDIMIENTO DE IMPORTACION
-    </h1>
+        <h1 class="page-header" style="text-align: center">
+        PROCEDIMIENTO DE IMPORTACION
+        </h1>
     </div>
     
     <div class="row">
