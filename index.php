@@ -39,7 +39,7 @@ $query = mysqli_query($idCone,$sql);
               <thead style="background-color:#699C95">
         	    <tr>
         	      <td>N°</td>
-        	      <td>CLIENTE</td>
+        	    
         	      <td>REFERENCIA</td>
         	    
         	      <td></td>
@@ -49,7 +49,7 @@ $query = mysqli_query($idCone,$sql);
               <?php while($F = mysqli_fetch_array($query)){ ?>
         	    <tr>
         	      <td><?php  echo $F["REF"]; ?></td>
-        	      <td><?php  echo $F["CLIENTE"]; ?></td>
+        	     
         	      <td><?php  echo $F["NREF"]; ?></td>
        
         	      
