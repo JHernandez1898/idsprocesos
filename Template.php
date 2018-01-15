@@ -78,5 +78,5 @@ date_default_timezone_set("America/Mexico_City");
             <!-- /.navbar-collapse -->
         </div>
         </nav>
-        </body>
-        </html>
+       
+   
