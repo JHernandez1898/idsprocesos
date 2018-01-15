@@ -2,6 +2,8 @@
 session_start();
 require("conect.php");
 $idCone = conectar();
+  if (!isset($_SESSION['AdminUser']))  header('Location: 	UserControlLogin.php'); 
+  if (isset($_GET["Logout"])) { unset($_SESSION["AdminUser"]); }
 if($_POST){
 $nombre =$_POST["txtUsuario"];
 $contraseña = $_POST["txtContrasenia"];

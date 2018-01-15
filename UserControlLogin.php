@@ -4,29 +4,18 @@ require ("conect.php");
 $idCone = conectar();
  
 $mensaje="";
-if (isset($_POST["txtUsuario"]) && isset($_POST["txtPassword"])) 
-{
-	if (($_POST["txtUsuario"]!='') && ($_POST["txtPassword"]!=''))
-		{ 
-		$sql = "SELECT * FROM usuarios WHERE nombre='admin' AND password=MD5('".$_POST["txtPassword"]."') AND numero ='00'";
-		$result = mysqli_query($idCone,$sql);
-		if($row = mysqli_fetch_array($result))
-		{
-			$_SESSION['AdminUser']=1;
-			$nombre = $row["nombre"];
-			$password = MD5($row["password"]);
-			if ($nombre=="admin") {
-			header('Location: UserControl.php');
+if($_POST){
+	$nombre = $_POST["txtUsuario"];
+	$contra = $_POST["txtPassword"];
+	$pass = md5($contra);
+	$sql ="SELECT * FROM usuarios";
+	$query= mysqli_query($idCone,$sql);
+	while($F =  mysqli_fetch_array($query)){
+		if($F["nombre"] == $nombre && $F["password"] == $pass){
+			$_SESSION['AdminUser'] = 1;
+			header("Location: UserControl.php");
 		}
-	
-		
-  } 
-  else 
-	{ 
-    session_destroy();
-    $mensaje="Informacion incorrecta!!!"; 
 	}
-}
 }
 ?>
 <html>
@@ -53,7 +42,7 @@ tr,td {  border: 0px;  }
 </style>
 </head>
 <body bgcolor="#FFFFFF" >
-<form method="POST">s
+<form method="POST" action="#">
 <table width="100%" height="100%" align="center">
 <tr valign="top">
  <td>
