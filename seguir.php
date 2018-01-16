@@ -43,7 +43,7 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
                 <?php 
 				if($F =  mysqli_fetch_array($pasouno)){
 					
-					$fecha = date("Y-m-d g:i a",$F["FECUNO"]);
+					$fecha = date("m-d-Y g:i a",$F["FECUNO"]);
 				
 					echo "Capturado el dia : $fecha <br>
 ";
@@ -69,7 +69,7 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
                 <?php 
 				if($F =  mysqli_fetch_array($pasodos)){
 					
-					$fecha = date("Y-m-d g:i a",$F["FEC"]);
+					$fecha = date("m-d-Y g:i a",$F["FEC"]);
 				
 					echo "Capturado el dia : $fecha <br>";
 					echo "<a href='mod2.php?ref=$ref'>";

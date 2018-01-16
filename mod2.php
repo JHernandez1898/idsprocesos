@@ -62,6 +62,7 @@ if($query&&$queryu){
 			?>
             <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
 			?>
+            <option  selected value="<?php echo $M["INICIAL"] ?>"><?php echo $M["INICIAL"] ?></option>
             </select></td>
           </tr>
         </tbody>

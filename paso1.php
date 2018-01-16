@@ -76,7 +76,7 @@ if($query&&$queryu){
             <td height="50"><span class="alert-info text-info" style="text-align:left">*Recepcion de Documentos </span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" class="input-sm" value = "<?php echo date('Y-m-d\TH:i')?>" name="fechados" required>
+              <input type="datetime-local" class="input-sm"   value = "<?php echo date('Y-m-d\TH:i')?>" name="fechados" required>
             </p></td>
             <td><select  class="input-sm" name="inicialesdos" required>
             <?php 

@@ -22,12 +22,16 @@ $query = mysqli_query($idCone,$sql);
     </div>
     
     <div class="row">
-    	<article class="col-lg-11">
+    	<article class="col-lg-10">
         </article>
     	<article class="col-lg-1">
         <form action="nuevo.php">
         <input type="submit" class="btn btn-default"  value="Nuevo">
         </form>
+       
+        </article>
+        <article class="col-lg-1">
+        <a href="reportes.php"><input type="button" class="btn btn-sm btn-default" value="Reportes" placeholder="Reportes"></a>
         </article>
     </div>
     

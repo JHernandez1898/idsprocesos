@@ -73,6 +73,7 @@ if($query&&$queryu){
 			?>
             <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
 			?>
+            <option selected value="<?php echo $M["INIUNO"] ?>"><?php echo $M["INIUNO"] ?></option>
             </select></td>
           </tr>
           <tr>
@@ -89,6 +90,7 @@ if($query&&$queryu){
 			?>
             <option value="<?php echo $F["INICIALES"] ?>"><?php echo $F["INICIALES"] ?></option>            <?php }
 			?>
+            <option selected value="<?php echo $M["INIDOS"] ?>"><?php echo $M["INIDOS"] ?></option>
             </select></td>
           </tr>
         </tbody>
