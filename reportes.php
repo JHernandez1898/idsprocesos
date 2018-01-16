@@ -24,7 +24,6 @@ $sql =  "SELECT * FROM referencias";
             <tbody>
               <tr>
                 <td>Por referencia individual</td>
-                <td>Por Fecha</td>
               </tr>
               <tr align="center">
                 <td>
@@ -42,16 +41,6 @@ $sql =  "SELECT * FROM referencias";
 
               	<input type="submit" value="Ir" class="btn btn-sm btn-success">
                
-                </form>
-                </td>
-                <td>
-                <form action="porfecha.php" method="post">
-                Del día: <br>
-				<input type="date" class="input-sm" name="fecuno" required><br>
-				Al día:<br>
-				<input type="date" class="input-sm" name="fecdos" required><br>
-                <br>
-				<input type="submit" value="Ir" class="btn btn-sm btn-success">
                 </form>
                 </td>
               </tr>
