@@ -32,9 +32,20 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
 <div class="container">
 
 	<div class="row">
-   	  <h1 class="page-header" style="text-align:center">
+  	 <article class="col-lg-7">
+   	  <h1 class="page-header" style="text-align:left">
         	Reporte
       </h1>
+      </article>
+      <article class="col-lg-5">
+   	  	<h1 style="text-align:right">
+        <?php 
+        echo "<a href='individualexcel.php?ref=$ref'>";
+       	echo "<img src='Recursos/imagenes/excel.png' height='50' width='50'>";
+        echo "</a>";
+		?>
+        </h1>
+      </article>
     </div>
     <?php if($F = mysqli_fetch_array($query)){ ?>
     <div class ="row">
