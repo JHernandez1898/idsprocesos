@@ -1,0 +1,142 @@
+<?php
+include("conect.php");
+$idCone = conectar();
+$mes =  $_POST["month"];
+$fecnum = strtotime($mes);
+
+
+/** Incluye PHPExcel */
+require_once("Recursos/excel/PHPExcel/PHPExcel/Classes/PHPExcel.php");
+// Crear nuevo objeto PHPExcel
+$objPHPExcel = new PHPExcel();
+// Propiedades del documento
+$objPHPExcel->getProperties()->setCreator("IDS")
+							 ->setLastModifiedBy("IDS")
+							 ->setTitle("mes")
+							 ->setSubject("Office 2010 XLSX REPORTE")
+							 ->setDescription("Reporte,generado usando clases de PHP.")
+							 ->setKeywords("office 2010 openxml php")
+							 ->setCategory("Archivo de reporte");
+
+$objPHPExcel->setActiveSheetIndex(0)->mergeCells('A1:E1');
+
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('B6', '1')
+			->setCellValue('B7', '2')
+			->setCellValue('B8', '3')
+            ->setCellValue('B9', '4')
+            ->setCellValue('B10', '5')
+			->setCellValue('B11', '6')
+			->setCellValue('B12', '7')
+			->setCellValue('B13', '8')
+			->setCellValue('B14', '9')
+			->setCellValue('B15', '10')
+			->setCellValue('B16', '11')
+			->setCellValue('B17', '12')
+            ->setCellValue('B18', '13')
+            ->setCellValue('B19', '14')
+			->setCellValue('B20', '15');
+			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('C6', 'Recepción de Mercancías y Documentos')
+			->setCellValue('C7', 'Revisión')
+			->setCellValue('C8', 'Tráfico')
+            ->setCellValue('C9', 'Clasificación')
+            ->setCellValue('C10', 'Tráfico')
+			->setCellValue('C11', 'Revisión del pedimento')
+			->setCellValue('C12', 'Confirmar depositos y equipo')
+			->setCellValue('C13', 'Validacion del pedimento')
+			->setCellValue('C14', 'Preparar documentos de importación')
+			->setCellValue('C15', 'Validacion del pedimento')
+			->setCellValue('C16', 'Preparar documentos de importación')
+			->setCellValue('C17', 'Solicitar carga de mercancía')
+            ->setCellValue('C18', 'Carga de mercancía')
+            ->setCellValue('C19', 'Despacho de embarque')
+			->setCellValue('C20', 'Facturacion de cuenta de gastos americana');
+			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('D6', 'Jefe de Bodefa/\rEjecutivo de Tráfico')
+			->setCellValue('D7', 'Revisador')
+			->setCellValue('D8', 'Ejecutivo de Tráfico')
+            ->setCellValue('D9', 'Clasificador')
+            ->setCellValue('D10', 'Ejecutivo de Tráfico')
+			->setCellValue('D11', 'Gerente')
+			->setCellValue('D12', 'Ejecutivo de trafico')
+			->setCellValue('D13', 'Gerente / Ejecutivo de Tráfico')
+			->setCellValue('D14', 'Ejecutivo de Tráfico \r/ Asistente de Tráfico')
+			->setCellValue('D15', 'Ejecutivo de Tráfico / Asistente de Tráfico')
+			->setCellValue('D16', 'Ejecutivo de Tráfico / Asistente de Tráfico')
+			->setCellValue('D17', 'Ejecutivo de Tráfico')
+            ->setCellValue('D18', 'Jefe de Bodega / Montecarguista')
+            ->setCellValue('D19', 'Ejecutivo de Trafico / Asistente de Trafico/ Gerente')
+			->setCellValue('D20', 'Gerente');
+			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('D23', 'Deposito a Despacho Horas')
+			->setCellValue('D25', 'Despacho a Facturacion Horas')
+			->setCellValue('D29', 'Recepcion a Facturacion Dias')
+            ->setCellValue('D28', 'Promedio Dias');
+		
+
+
+
+
+
+
+
+
+	
+
+$objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('B1', 'Reporte de tiempos de importación')
+			->setCellValue('C5', 'OPERACION')
+			->setCellValue('D5', 'RESPONSABLES');
+		
+
+	
+// Fuente de la primera fila en negrita
+$boldArray = array('font' => array('bold' => true,),'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER));
+
+$objPHPExcel->getActiveSheet()->getStyle('A1:E4')->applyFromArray($boldArray);
+//Ancho de las columnas
+$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(8);	
+$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(5);	
+$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
+$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);	
+$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(25);
+$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(25);	
+$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(25);
+
+
+$objPHPExcel->getActiveSheet()->getDefaultStyle()->getAlignment()->setWrapText(true);
+
+$rango="B5:D20";
+$styleArray = array('font' => array( 'name' => 'Arial','size' => 10),
+'borders'=>array('allborders'=>array('style'=> PHPExcel_Style_Border::BORDER_THIN,'color'=>array('argb' => 'FFF')))
+);
+$objPHPExcel->getActiveSheet()->getStyle($rango)->applyFromArray($styleArray);
+
+// Cambiar el nombre de hoja de cálculo
+$objPHPExcel->getActiveSheet()->setTitle('REPORTE ');
+
+
+// Establecer índice de hoja activa a la primera hoja , por lo que Excel abre esto como la primera hoja
+$objPHPExcel->setActiveSheetIndex(0);
+
+// Redirigir la salida al navegador web de un cliente ( Excel5 )
+header('Content-Type: application/vnd.ms-excel');
+header('Content-Disposition: attachment;filename="mes.xls"');
+header('Cache-Control: max-age=0');
+// Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
+header('Cache-Control: max-age=1');
+
+// Si usted está sirviendo a IE a través de SSL , a continuación, puede ser necesaria la siguiente
+header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+header ('Pragma: public'); // HTTP/1.0
+
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter->save('php://output');
+exit;
+ ?>

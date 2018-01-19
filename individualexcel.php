@@ -57,6 +57,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('C4', 'CRITERIOS DE ACEPTACION')
 			->setCellValue('D4', 'ACEPTACION')
 			->setCellValue('E4', 'INICIALES');
+			
 if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)
          

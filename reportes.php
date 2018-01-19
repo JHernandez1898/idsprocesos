@@ -24,26 +24,30 @@ $sql =  "SELECT * FROM referencias";
             <tbody>
               <tr>
                 <td>Por referencia individual</td>
+                <td>Reporte de tiempos de importación</td>
               </tr>
               <tr align="center">
-                <td>
-                <form action="individual.php" method="post">
-                <select class="input-sm" name="referencia">
-                <?php 
+                <td><form action="individual.php" method="post">
+                  <select class="input-sm" name="referencia">
+                    <?php 
 				$query = mysqli_query($idCone,$sql);
 				while($F =mysqli_fetch_array($query)){
 					?>
-                   <option value="<?php echo $F["REF"] ?>" > <?php echo $F["NREF"]?></option> 
-                    
-				<?php } ?>
-                 </select><br>
-<br>
-
-              	<input type="submit" value="Ir" class="btn btn-sm btn-success">
-               
-                </form>
-                </td>
-              </tr>
+                    <option value="<?php echo $F["REF"] ?>" > <?php echo $F["NREF"]?></option>
+                    <?php } ?>
+                  </select>
+                  <br>
+                  <br>
+                  <input type="submit" value="Ir" class="btn btn-sm btn-success">
+                </form></td>
+                <form  action="mensualexcel.php" method="post">
+                <td><p>
+                  <label for="month">Mes:</label>
+                  <input type="month" name="month" id="month" value =<?php echo date("Y-m")?>>
+                </p>
+                <p>&nbsp;</p></td>
+              
+              </form>
             </tbody>
           </table>
         </article>

@@ -5,9 +5,35 @@ require("conect.php");
   if (!isset($_SESSION['AdminUser']))  header('Location: login.php'); 
   if (isset($_GET["Logout"])) { unset($_SESSION["AdminUser"]); }
 $idCone =  conectar();
-$sql =  "SELECT *  FROM referencias";
+$max = "SELECT MAX(REF) as mr FROM referencias";
+$maxquery =  mysqli_query($idCone,$max);
+$m;
+if($R = mysqli_fetch_array($maxquery)){
+	$m =$R["mr"]; 
+}
+$criterio = isset($_GET["criterio"]);
+//Limito la busqueda 
+$TAMANO_PAGINA = 10; 
+
+//examino la página a mostrar y el inicio del registro a mostrar 
+$pagina = $_GET["pagina"]; 
+if (!$pagina) { 
+   	$inicio = 0; 
+   	$pagina=1; 
+} 
+else { 
+   	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
+}
+$sql =  "SELECT *  FROM referencias ORDER BY REF DESC LIMIT $inicio,10";
 $query = mysqli_query($idCone,$sql);
 
+$q = "SELECT * FROM referencias";
+$qx =  mysqli_query($idCone,$q);
+$num_total_registros = mysqli_num_rows($qx); 
+//calculo el total de páginas 
+$total_paginas = ceil($num_total_registros / $TAMANO_PAGINA); 
+
+echo mysqli_error($idCone);
 ?>
 <html>
 <head>
@@ -77,6 +103,27 @@ $query = mysqli_query($idCone,$sql);
               <?php  } ?>
       	    </tbody>
       	  </table>
+        </article>
+    </div>
+    <div class="row">
+    	<article class="col-lg-12">
+        <?php 
+		if ($total_paginas > 1){ 
+   	for ($i=1;$i<=$total_paginas;$i++){ 
+      	if ($pagina == $i) {
+         	//si muestro el índice de la página actual, no coloco enlace 
+         	echo $pagina . " "; 
+		}
+		
+      	else {
+         	//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
+         	echo "<a href='index.php?pagina=$i'>";
+			?> <input type="button" class="btn btn-default btn-sm"  width="10" height="10"><?php
+			echo "</a>"; 
+		}
+   	} 
+}
+		?>
         </article>
     </div>
 </div>

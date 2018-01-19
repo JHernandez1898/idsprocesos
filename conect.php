@@ -12,4 +12,21 @@ date_default_timezone_set('America/Mexico_City');
 
   return $idCone;
  }
+ 
+ function conectarIDS(){
+  $serverName = "70.124.112.243"; //serverName\instanceName
+$connectionInfo = array( "Database"=>"Aduana", "UID"=>"masterIDS", "PWD"=>"masterIDS");
+$conn = sqlsrv_connect($serverName, $connectionInfo) ;
+
+if( $conn ) {
+     echo "";
+}else{
+     echo "Conexión no se pudo establecer.<br />";
+     die( print_r( sqlsrv_errors(), true));
+	 
+}
+
+  return $conn;
+	 
+ }
 ?>

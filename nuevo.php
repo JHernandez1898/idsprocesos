@@ -2,8 +2,10 @@
 require("Template.php");
 include("conect.php");
 $idCone  =  conectar();
-$sql =  "SELECT * FROM clientes";
-$query =  mysqli_query($idCone,$sql);
+$idsCone =  conectarIDS();
+
+$sql =  "SELECT * FROM dbo.Clientes";
+$query =  sqlsrv_query($idsCone,$sql);
 
  ?>
 <!doctype html>
@@ -17,61 +19,100 @@ $query =  mysqli_query($idCone,$sql);
 <div class="container">
 	<div class="row">
     	<h1 class="page-header" style="text-align:center">
-        	NUEVA ENTRADA
+        	Nueva entrada
         </h1>
     </div>
     
     <div class="row">
     	<article class="col-lg-12" align="center">
-        <form  method="post" action="registrarnuevo.php">
-    	  <table width="638" class="table table-striped" align="center" border="0">
-    	    <tbody>
-    	      <tr>
-    	        <td><p>CLIENTE:</p>
-   	            <p>
-                <select name="cliente" class="input-sm">
+        <form  method="post" action="#">
+          <table class="table table-bordered table-striped" width="200" border="1">
+            <tbody>
+              <tr>
+                <td>
+                <select name="cliente" class="input-lg">
                 	<?php 
-					while($F = mysqli_fetch_array($query)){
-						?>
-                        <option value="<?php echo $F["razonsocial"]?>" ><?php  echo $F["razonsocial"];?></option>
-                        <?php
-					}
-					
+					while($F = sqlsrv_fetch_array($query)){
 					?>
+                    <option value="<?php echo $F["CLIENTE_ID"] ?>"><?php echo $F["Nom"]?></option>
                     
-                	</select>
-                    <a href="nuevocliente"><input type="button" class="btn btn-default" value ="nuevo"></a></p>
-                    </td>
-    	        <td><p>N° REFERENCIA</p>
-   	            <p><input type="text" class="input-sm" name = "ref"></p></td>
-  	        </tr>
-    	      <tr>
-    	        <td><p>EMBARQUE</p>
-   	            <p><select name="embarque">
-                <option>Consolidado</option>
-                <option>Directo</option>
-                </select></p></td>
-    	        <td><p>N° DE PEDIMENTO</p>
-   	            <p><input type="text" class="input-sm" name = "pedimento"></p></td>
-  	        </tr>
-    	      <tr>
-    	        <td><p>SUBDIVISIONES</p>
-                  <p>
-                    <input type="text" class="input-sm" name = "subdivisiones">
-                </p></td>
-    	        <td><p><?php echo "Fecha: "; echo date("Y-m-d"); ?><p></td>
-  	        </tr>
-    	      <tr>
-    	        <td><p><?php echo "Hora: "; echo date("g:i a"); ?></p></td>
-    	        <td><p>
-    	          <input type="submit" class="input-sm btn btn-success" value="Registrar" name = "Cliente2">
-    	        </p></td>
-  	        </tr>
-  	      </tbody>
-  	    </table>
+                    <?php 
+					}
+					?>
+                </select>
+                <input type="submit" class="btn btn-sm btn-success" value="Buscar Referencias">
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </form>
         </article>
     </div>
+    <?php if($_POST){
+		$ncliente= $_POST["cliente"];
+		 echo "Fecha : ".date("m-d-Y"); 
+          echo " Hora : ".date("g:i a"); 
+		$idsql = "SELECT * FROM dbo.Trafico WHERE dbo.Trafico.traCli LIKE '$ncliente'";
+		$nom = "SELECT Nom FROM dbo.Clientes WHERE CLIENTE_ID LIKE '$ncliente'";
+		$qunom=sqlsrv_query($idsCone,$nom);
+		$nombre;
+		if($T = sqlsrv_fetch_array($qunom)){
+			$nombre  = $T["Nom"];
+		}
+		$idsquery = sqlsrv_query($idsCone,$idsql);
+	
+		?>
+     <div class="row">
+    	<article class="col-lg-12" align="center">
+          <table class="table table-bordered table-striped"  width="200" border="1">
+            <tbody>
+              <tr>
+                <td>&nbsp;</td>
+                <td>Cliente</td>
+                <td>Referencia</td>
+                <td>Embarque</td>
+                <td>Pedimento</td>
+                <td>Subdivisiones</td>
+               
+                <td>&nbsp;</td>
+              </tr>
+              <?php
+			  $c = 0;
+			  while($R = sqlsrv_fetch_array($idsquery)){
+				  ?>
+				  <form action="registrarnuevo.php" method="post">
+				  <?php
+			 
+				  $fe =  $R["traFechaAct"]->format("Y-m-d");
+				  $fecnum = strtotime($fe);
+				$mes = date("m") - 1;
+				  $date =strtotime(date("Y-".$mes."-01"));
+				  if($fecnum>=$date){
+					   $c++;
+			   ?>
+              <tr>
+           
+                <td><?php echo $c ?></td>
+                <td><?php echo $nombre ?> <input type="hidden" name="cliente" value="<?php echo $nombre ?>"></td>
+                <td><?php echo $R["traReferencia"] ?>  <input type="hidden" name="ref" value="<?php echo $R["traReferencia"] ?>"></td>
+                <td><select name="embarque">
+                <option>Consolidado</option>
+                <option>Directo</option>
+                </select></td>
+                <td><?php echo $R["traPedimento"] ?> <input type="hidden" name="pedimento" value="<?php echo $R["traPedimento"] ?>"></td>
+                <td><input type="text" value="N/A" name="subdivisiones"></td>
+            
+                <td><input type="submit" value="Comenzar" class="btn btn-sm btn-success"></td>
+              </tr>
+            </form>  
+              <?php
+				  }
+				  } ?>
+            </tbody>
+          </table>
+        </article>
+    </div>
+    <?php  } ?>
 </div>
 </body>
 </html>
