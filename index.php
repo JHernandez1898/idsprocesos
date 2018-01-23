@@ -132,7 +132,7 @@ echo mysqli_error($idCone);
         	        <tbody>
         	          <tr>
                         <?php 
-						$c = 0;
+						$c = 1;
 						while($c <= 15){
 							
 							if($c < $F["PASO"]){
