@@ -77,9 +77,11 @@ echo mysqli_error($idCone);
         	    
       	      </tr>
               </thead>
-              <?php while($F = mysqli_fetch_array($query)){ ?>
+              <?php
+			  $s = 1;
+			   while($F = mysqli_fetch_array($query)){ ?>
         	    <tr>
-        	      <td><?php  echo $F["REF"]; ?></td>
+        	      <td><?php  echo $s; $s++; ?></td>
         	      <td><?php  echo $F["NREF"]; ?></td>
        			  <td>
 				  
@@ -133,7 +135,7 @@ echo mysqli_error($idCone);
 						$c = 0;
 						while($c <= 15){
 							
-							if($c <= $F["PASO"]){
+							if($c < $F["PASO"]){
 								?>
 							 <td bgcolor="#6ADF48"><?php echo $c ?></td>
 							<?php
