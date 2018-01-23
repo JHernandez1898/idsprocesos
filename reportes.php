@@ -2,7 +2,7 @@
 include("Template.php");
 require("conect.php");
 $idCone = conectar();
-$sql =  "SELECT * FROM referencias";
+$sql =  "SELECT * FROM referencias ORDER BY NREF ASC";
 ?>
 <!doctype html>
 <html>
@@ -45,7 +45,9 @@ $sql =  "SELECT * FROM referencias";
                   <label for="month">Mes:</label>
                   <input type="month" name="month" id="month" value =<?php echo date("Y-m")?>>
                 </p>
-                <p>&nbsp;</p></td>
+                <p>
+                  <input type="submit" value="Ir" class="btn btn-sm btn-success">
+                </p></td>
               
               </form>
             </tbody>

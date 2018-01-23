@@ -24,7 +24,7 @@ if (!$pagina) {
 else { 
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
-$sql =  "SELECT *  FROM referencias ORDER BY REF DESC LIMIT $inicio,10";
+$sql =  "SELECT *  FROM referencias ORDER BY PASO ASC LIMIT $inicio,10";
 $query = mysqli_query($idCone,$sql);
 
 $q = "SELECT * FROM referencias";
@@ -69,23 +69,48 @@ echo mysqli_error($idCone);
         	    <tr>
         	      <td>N°</td>
         	      <td>REFERENCIA</td>
-        	    
+        	      <td>TIEMPO</td>
+                   <td></td>
         	      <td></td>
-        	      <td>&nbsp;</td>
+                  <td>PASO</td>
+                   <td>TIEMPO DESDE FINALIZACIÓN</td>
+        	    
       	      </tr>
               </thead>
               <?php while($F = mysqli_fetch_array($query)){ ?>
         	    <tr>
         	      <td><?php  echo $F["REF"]; ?></td>
         	      <td><?php  echo $F["NREF"]; ?></td>
-       
-        	      
-        	      <td>
+       			  <td>
+				  
+				  <?php  $fecha =  date("Y-m-d",$F["FECNUM"]); 
+				  $date = date("Y-m-d");
+				  $datetime1 = date_create($fecha);
+				  $datetime2 = date_create($date);
+				  $interval = date_diff($datetime1, $datetime2);
+				  $dias = $interval->format('%a');
+				  echo $dias." dias";
+				  ?></td>
+					  <td>
+                  
                 
                   	<?php 
 					$ref = $F["REF"];
+					
+					
                   echo "<a href='seguir.php?ref=$ref'>";
-                  echo "<input type='submit' class='btn btn-sm btn-success' value='Seguir'>";
+				  if($F["PASO"] == 16)
+				  {
+					echo "<input type='submit' class='btn btn-sm btn-success' value='Seguimiento'>"; 
+					  
+				  }
+				  else if($F["PASO"] >=7){
+					  echo "<input type='submit' class='btn btn-sm btn-warning' value='Seguimiento'>"; 
+				  }else{
+					  
+					  echo "<input type='submit' class='btn btn-sm btn-danger' value='Seguimiento'>"; 
+				  }
+                 
 				  echo "</a>";
                     ?>
                 
@@ -99,6 +124,48 @@ echo mysqli_error($idCone);
 				  echo "</a>";
                     ?>
                   	</td>
+        	      <td>
+                
+                  <table width="200" border="0">
+        	        <tbody>
+        	          <tr>
+                        <?php 
+						$c = 0;
+						while($c <= 15){
+							
+							if($c <= $F["PASO"]){
+								?>
+							 <td bgcolor="#6ADF48"><?php echo $c ?></td>
+							<?php
+							}else{
+							?>
+							 <td bgcolor="#E84D4D"><?php echo $c ?></td>
+							<?php
+							}
+							$c++;
+						}?>
+        	           
+        	           
+      	            </tr>
+      	          </tbody>
+      	        </table></td>
+                   <td>
+                   <?php 
+				   $sql =  "SELECT * FROM pasoquince WHERE REF like ".$F['REF']."";
+				   $fe = mysqli_query($idCone,$sql);
+				  if($R = mysqli_fetch_array($fe)){
+					  $fec =  date("Y-m-d",$R["UNO"]); 
+				 	 $date = date("Y-m-d");
+				  	$datetime1 = date_create($fec);
+				  $datetime2 = date_create($date);
+				  $interval = date_diff($datetime1, $datetime2);
+				  $dias = $interval->format('%a');
+				  echo $dias." dias";
+				  }
+				   
+				   ?>
+                   </td>
+        	    
       	      </tr>
               <?php  } ?>
       	    </tbody>

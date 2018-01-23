@@ -8,7 +8,7 @@ $uno  =strtotime($_POST["uno"]);
 $iuno =$_POST["iuno"];
 
 $sql = "INSERT INTO pasoquince VALUES('$ref','$uno','$iuno')";
-$update = "UPDATE referencias SET paso = '0' WHERE(REF like '$ref') ";
+$update = "UPDATE referencias SET paso = '16' WHERE(REF like '$ref') ";
 $queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
 if($query&&$queryu){

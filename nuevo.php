@@ -4,7 +4,7 @@ include("conect.php");
 $idCone  =  conectar();
 $idsCone =  conectarIDS();
 
-$sql =  "SELECT * FROM dbo.Clientes";
+$sql =  "SELECT * FROM dbo.Clientes ORDER BY Nom ASC";
 $query =  sqlsrv_query($idsCone,$sql);
 
  ?>

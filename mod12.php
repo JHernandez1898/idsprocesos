@@ -9,10 +9,8 @@ $uno  =strtotime($_POST["uno"]);
 $iuno =$_POST["iuno"];
 
 $sql = "UPDATE pasodoce SET UNO = '$uno',IUNO = '$iuno' WHERE (REF LIKE '$ref')";
-$update = "UPDATE referencias SET paso = '13' WHERE(REF like '$ref') ";
-$queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
-if($query&&$queryu){
+if($query){
 	header("Location: seguir.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);

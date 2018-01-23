@@ -3,7 +3,8 @@ include("conect.php");
 $idCone = conectar();
 $mes =  $_POST["month"];
 $fecnum = strtotime($mes);
-
+$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
+$query = mysqli_query($idCone,$SQL);
 
 /** Incluye PHPExcel */
 require_once("Recursos/excel/PHPExcel/PHPExcel/Classes/PHPExcel.php");
@@ -76,9 +77,136 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('D25', 'Despacho a Facturacion Horas')
 			->setCellValue('D29', 'Recepcion a Facturacion Dias')
             ->setCellValue('D28', 'Promedio Dias');
+			
+	
+
+$c = 6 ;
+$column = 'F';
+while($F = mysqli_fetch_array($query)){
+	$ref = $F["REF"];
+	$pasouno =  mysqli_query($idCone,"SELECT * FROM pasouno WHERE REF LIKE '$ref'");
+	$pasodos =  mysqli_query($idCone,"SELECT * FROM pasodos WHERE REF LIKE '$ref'");
+	$pasotres =  mysqli_query($idCone,"SELECT * FROM pasotres WHERE REF LIKE '$ref'");
+	$pasocuatro=  mysqli_query($idCone,"SELECT * FROM pasocuatro WHERE REF LIKE '$ref'");
+	$pasocinco =  mysqli_query($idCone,"SELECT * FROM pasocinco WHERE REF LIKE '$ref'");
+	$pasoseis =  mysqli_query($idCone,"SELECT * FROM pasoseis WHERE REF LIKE '$ref'");
+	$pasosiete =  mysqli_query($idCone,"SELECT * FROM pasosiete WHERE REF LIKE '$ref'");
+	$pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'");
+	$pasonueve =  mysqli_query($idCone,"SELECT * FROM pasonueve WHERE REF LIKE '$ref'");
+	$pasodiez =  mysqli_query($idCone,"SELECT * FROM pasodiez WHERE REF LIKE '$ref'");
+	$pasoonce =  mysqli_query($idCone,"SELECT * FROM pasoonce WHERE REF LIKE '$ref'");
+	$pasodoce =  mysqli_query($idCone,"SELECT * FROM pasodoce WHERE REF LIKE '$ref'");
+	$pasotrece =  mysqli_query($idCone,"SELECT * FROM pasotrece WHERE REF LIKE '$ref'");
+	$pasocatorce =  mysqli_query($idCone,"SELECT * FROM pasocatorce WHERE REF LIKE '$ref'");
+	$pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$ref'");
+	
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
+	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+   	if($R = mysqli_fetch_array($pasouno)){			
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("d/m/Y g:i a",$R["FECDOS"]));
+		
+			
+}
+if($R = mysqli_fetch_array($pasodos)){			
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("d/m/Y g:i a",$R["FEC"]));
+			
+			
+}
+if($R = mysqli_fetch_array($pasotres)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."8", date("d/m/Y g:i a",$R["FECDOS"]));
 		
 
+			
+}
+if($R = mysqli_fetch_array($pasocuatro)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."9", date("d/m/Y g:i a",$R["FECDOS"]));
+		
 
+			
+}
+if($R = mysqli_fetch_array($pasocinco)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."10", date("d/m/Y g:i a",$R["TRES"]));
+		
+
+			
+}
+if($R = mysqli_fetch_array($pasoseis)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."11", date("d/m/Y g:i a",$R["UNO"]));
+		
+
+			
+}
+if($R = mysqli_fetch_array($pasosiete)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."12", date("d/m/Y g:i a",$R["UNO"]));
+			
+
+			
+}
+if($R = mysqli_fetch_array($pasoocho)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."13", date("d/m/Y g:i a",$R["UNO"]));
+		
+
+			
+}
+if($R = mysqli_fetch_array($pasonueve)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."14", date("d/m/Y g:i a",$R["DOS"]));
+
+			
+}
+if($R = mysqli_fetch_array($pasodiez)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."15", date("d/m/Y g:i a",$R["UNO"]));
+
+			
+}
+if($R = mysqli_fetch_array($pasoonce)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."16", date("d/m/Y g:i a",$R["DOS"]));
+	
+
+			
+}
+if($R = mysqli_fetch_array($pasodoce)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."17", date("d/m/Y g:i a",$R["UNO"]));
+		
+
+			
+}
+if($R = mysqli_fetch_array($pasotrece)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."18", date("d/m/Y g:i a",$R["UNO"]));
+			
+
+			
+}
+if($R = mysqli_fetch_array($pasocatorce)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."19", date("d/m/Y g:i a",$R["DOS"]));
+		
+
+			
+}		
+if($R = mysqli_fetch_array($pasoquince)){			
+$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."20", date("d/m/Y g:i a",$R["UNO"]));
+
+			
+}		
+	$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."23","=+".$column."19-".$column."14");
+	 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();
+	 $column++;
+	$c++;	
+	
+}
 
 
 
@@ -103,9 +231,7 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(8);
 $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(5);	
 $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);	
 $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(25);	
-$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(25);
-$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(25);	
-$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(25);
+
 
 
 $objPHPExcel->getActiveSheet()->getDefaultStyle()->getAlignment()->setWrapText(true);
@@ -125,7 +251,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="mes.xls"');
+header('Content-Disposition: attachment;filename="mes.xlsx"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');
@@ -136,7 +262,7 @@ header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
 header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
 header ('Pragma: public'); // HTTP/1.0
 
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 exit;
  ?>

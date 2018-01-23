@@ -14,10 +14,8 @@ $iniciailesdos =  $_POST["inicialesdos"];
 $fecnumuno =  strtotime($fechauno);
 $fecdos =  strtotime($fechados);
 $sql = "UPDATE pasouno SET FECUNO = '$fecnumuno',INIUNO = '$inicialesuno',FECDOS = '$fecdos',INIDOS = '$iniciailesdos' WHERE (REF LIKE '$ref')";
-$update = "UPDATE referencias SET paso = '2' WHERE(REF like '$ref') ";
-$queryu = mysqli_query($idCone,$update);
 $query =  mysqli_query($idCone,$sql);
-if($query&&$queryu){
+if($query){
 	header("Location: seguir.php?ref=$ref");
 }else{
 	echo mysqli_error($idCone);
