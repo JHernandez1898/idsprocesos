@@ -45,9 +45,7 @@ $sql =  "SELECT * FROM referencias ORDER BY NREF ASC";
                   <label for="month">Mes:</label>
                   <input type="month" name="month" id="month" value =<?php echo date("Y-m")?>>
                 </p>
-                <p>
-                  <input type="submit" value="Ir" class="btn btn-sm btn-success">
-                </p></td>
+                <p>&nbsp;</p></td>
               
               </form>
             </tbody>
