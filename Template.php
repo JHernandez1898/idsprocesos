@@ -56,7 +56,7 @@ date_default_timezone_set("America/Mexico_City");
                         <a href="index.php?pagina=1">Home</a>
                     </li>
                     <li>
-                        <a href="?Logout=yes">Cerrar Sesión</a>
+                        <a href="?Logout=yes&&pagina=1">Cerrar Sesión</a>
                     </li>
                    
 		

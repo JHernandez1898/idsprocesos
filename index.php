@@ -103,14 +103,14 @@ echo mysqli_error($idCone);
                   echo "<a href='seguir.php?ref=$ref'>";
 				  if($F["PASO"] == 16)
 				  {
-					echo "<input type='submit' class='btn btn-sm btn-success' value='Seguimiento'>"; 
+					echo "<input type='submit' class='btn btn-sm btn-success' value='Editar proceso'>"; 
 					  
 				  }
 				  else if($F["PASO"] >=7){
-					  echo "<input type='submit' class='btn btn-sm btn-warning' value='Seguimiento'>"; 
+					  echo "<input type='submit' class='btn btn-sm btn-warning' value='Editar proceso'>"; 
 				  }else{
 					  
-					  echo "<input type='submit' class='btn btn-sm btn-danger' value='Seguimiento'>"; 
+					  echo "<input type='submit' class='btn btn-sm btn-danger' value='Editar proceso'>"; 
 				  }
                  
 				  echo "</a>";
@@ -122,7 +122,7 @@ echo mysqli_error($idCone);
         	      <td>
                   <?php $ref = $F["REF"];
                   echo "<a href='detalles.php?ref=$ref'>";
-                  echo "<input type='submit' class='btn btn-sm btn-info' value='Detalles'>";
+                  echo "<input type='submit' class='btn btn-sm btn-info' value='Ver proceso'>";
 				  echo "</a>";
                     ?>
                   	</td>
@@ -187,12 +187,13 @@ echo mysqli_error($idCone);
       	else {
          	//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
          	echo "<a href='index.php?pagina=$i'>";
-			?> <input type="button" class="btn btn-default btn-sm"  width="10" height="10"><?php
+			?> <input type="button" class="btn btn-default btn-sm" value="<?php echo $i ?>"  width="10" height="10"><?php
 			echo "</a>"; 
 		}
    	} 
 }
 		?>
+        <input type="text" name="lector" autofocus >
         </article>
     </div>
 </div>

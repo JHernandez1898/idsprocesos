@@ -102,7 +102,15 @@ $query =  sqlsrv_query($idsCone,$sql);
                 <td><?php echo $R["traPedimento"] ?> <input type="hidden" name="pedimento" value="<?php echo $R["traPedimento"] ?>"></td>
                 <td><input type="text" value="N/A" name="subdivisiones"></td>
             
-                <td><input type="submit" value="Comenzar" class="btn btn-sm btn-success"></td>
+                <td>
+                <?php $sqlx = "SELECT * FROM referencias WHERE NREF LIKE '".$R["traReferencia"]."'";
+				$w = mysqli_query($idCone,$sqlx);
+				if(mysqli_fetch_array($w)){
+					echo "Ya registrada";
+				}else{
+				 ?>
+                <input type="submit" value="Comenzar" class="btn btn-sm btn-success"></td>
+                <?php  } ?>
               </tr>
             </form>  
               <?php
