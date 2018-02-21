@@ -229,10 +229,10 @@ echo mysqli_error($idCone);
     
 		 echo "Fecha : ".date("m-d-Y"); 
           echo " Hora : ".date("g:i a"); 
-		$idsql = "SELECT * FROM dbo.Trafico ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
+		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
 		
 		$idsquery = sqlsrv_query($idsCone,$idsql);
-		$q = "SELECT * FROM dbo.Trafico";
+		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'";
 		$qx =  sqlsrv_query($idsCone,$q);
 		$r = 0;
 		while(sqlsrv_fetch_array($qx)){
