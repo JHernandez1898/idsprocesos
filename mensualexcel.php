@@ -229,7 +229,7 @@ $horas3 = $interval3->format("%H");
 $dias3 = $interval3->format("%d");
 $horasdias3  = $dias3 * 24 ;
 
-$suma = $suma + $dias;
+$suma = $suma + $dias3;
 
 	$objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."23",$horas + $horasdias)
