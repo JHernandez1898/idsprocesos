@@ -233,7 +233,7 @@ $suma = $suma + $dias;
 
 	$objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."23",$horas + $horasdias)
-			->setCellValue($column."28",$horas3 + $horasdias3)
+			->setCellValue($column."28",$dias3)
 			->setCellValue($column."25",$horas2 + $horasdias2);
 			
 	 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();
