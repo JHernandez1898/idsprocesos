@@ -261,7 +261,11 @@ echo mysqli_error($idCone);
                 <td>&nbsp;</td>
               </tr>
               <?php
-			  $c = 0;
+			  if($pagina>1){
+			  $c = 0 + ($pagina * 10) -10;
+			  }else{
+				  $c = 0;
+			  }
 			  while($R = sqlsrv_fetch_array($idsquery)){
 				  ?>
 				  <form action="registrarnuevo.php" method="post">
