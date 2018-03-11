@@ -4,16 +4,7 @@ session_start();
 include("Template.php");
 require("conect.php");
 
-$actual  = strtotime(date('Y-m-d'));
-echo $actual;
-echo "<br>";
-$actual1  = strtotime(date('2018-03-12'));
-echo $actual1;
-echo "<br>";
-$actual2  = strtotime(date('2018-03-13'));
-echo $actual2;
-echo "<br>";
-echo date('l', $actual2);
+
 
 
   if (!isset($_SESSION['AdminUser']))  header('Location: login.php'); 
