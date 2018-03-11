@@ -1,7 +1,21 @@
 <?php
 session_start();
+
 include("Template.php");
 require("conect.php");
+
+$actual  = strtotime(date('Y-m-d'));
+echo $actual;
+echo "<br>";
+$actual1  = strtotime(date('2018-03-12'));
+echo $actual1;
+echo "<br>";
+$actual2  = strtotime(date('2018-03-13'));
+echo $actual2;
+echo "<br>";
+echo date('l', $actual2);
+
+
   if (!isset($_SESSION['AdminUser']))  header('Location: login.php'); 
   if (isset($_GET["Logout"])) { unset($_SESSION["AdminUser"]); }
 $idCone =  conectar();
@@ -85,8 +99,15 @@ echo mysqli_error($idCone);
         	      <td><?php  echo $s; $s++; ?></td>
         	      <td><?php  echo $F["NREF"]; ?></td>
        			  <td>
+
+
 				  
-				  <?php  $fecha =  date("Y-m-d",$F["FECNUM"]); 
+				  <?php 
+
+
+
+
+				   $fecha =  date("Y-m-d",$F["FECNUM"]); 
 				  $date = date("Y-m-d");
 				  $datetime1 = date_create($fecha);
 				  $datetime2 = date_create($date);

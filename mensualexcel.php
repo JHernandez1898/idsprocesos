@@ -73,17 +73,22 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('D20', 'Gerente');
 			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue('D23', 'Deposito a Despacho Horas')
-			->setCellValue('D25', 'Despacho a Facturacion Horas')
-			->setCellValue('D28', 'Recepcion a Facturacion Dias')
-            ->setCellValue('D29', 'Promedio Dias');
+			->setCellValue('D23', 'Fines de semana')
+			->setCellValue('D25', 'Horas sabados y domingos')
+			->setCellValue('D28', 'Horas no laborales')
+			->setCellValue('D29', 'Deposito a Despacho Horas')
+			->setCellValue('D30', 'Despacho a Facturacion Horas')
+			->setCellValue('D31', 'Recepcion a Facturacion Dias')
+            ->setCellValue('D32', 'Promedio Dias');
 			
 	
 
 $c = 6 ;
+$f  =0;
 $column = 'F';
 $suma = 0 ;
 while($F = mysqli_fetch_array($query)){
+	$f++;
 	$ref = $F["REF"];
 	$pasouno =  mysqli_query($idCone,"SELECT * FROM pasouno WHERE REF LIKE '$ref'");
 	$pasodos =  mysqli_query($idCone,"SELECT * FROM pasodos WHERE REF LIKE '$ref'");
@@ -104,9 +109,11 @@ while($F = mysqli_fetch_array($query)){
 	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
+	$d1;
    	if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("d/m/Y g:i a",$R["FECDOS"]));
 $date1 = date("Y-m-d h:i ",$R["FECDOS"]);
+$d1 = $R["FECDOS"];
 		
 			
 }
@@ -198,13 +205,16 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."19", date("d/m/Y g:i a",$R["DOS"]));
 		$date14 = date("Y-m-d h:i ",$R["DOS"]);
 
+
 			
 }	
+$d15;
 $date15 ;	
 if($R = mysqli_fetch_array($pasoquince)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."20", date("d/m/Y g:i a",$R["UNO"]));
 			$date15 = date("Y-m-d h:i ",$R["UNO"]);
+			$d15 = $R["UNO"];
 
 			
 }		
@@ -229,21 +239,46 @@ $horas3 = $interval3->format("%H");
 $dias3 = $interval3->format("%d");
 $horasdias3  = $dias3 * 24 ;
 
-$suma = $suma + $dias3;
 
+$fines = 0 ;
+$domsab = 0 ;
+$d = 0 ;
+for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
+	{
+		$d++;
+	$dia = date('l',$c);
+		if($dia == 'Saturday'||$dia== 'Sunday'){
+			$fines = 1;
+			$domsab++;
+			if($domsab>2){
+				$fines++;
+
+			}
+		}
+
+	
+	}
 	$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."23",$horas + $horasdias)
-			->setCellValue($column."28",$dias3)
-			->setCellValue($column."25",$horas2 + $horasdias2);
-			
-	 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();
+			->setCellValue($column."29",$horas + $horasdias)
+			->setCellValue($column."31",$d)
+			->setCellValue($column."30",$horas2 + $horasdias2);
+
+  $objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue($column."23",$fines)
+			->setCellValue($column."25",$domsab * 24)
+			->setCellValue($column."27",$d * 16);	
+$suma = $suma + $d;
+
+			 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();
 	 $column++;
 	$c++;	
-	
 }
-$promedio  = $suma/$c ;
+
+$promedio  = $suma/$f ;
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue("E29",$promedio." dias");
+			->setCellValue("D33",$promedio." dias");
+
+
 
 
 
