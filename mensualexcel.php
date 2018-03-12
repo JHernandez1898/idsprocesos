@@ -266,7 +266,7 @@ for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
   $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."23",$fines)
 			->setCellValue($column."25",$domsab * 24)
-			->setCellValue($column."27",$d * 16);	
+			->setCellValue($column."28",$d * 16);	
 $suma = $suma + $d;
 
 			 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();

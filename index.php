@@ -241,10 +241,10 @@ echo mysqli_error($idCone);
     
 		 echo "Fecha : ".date("m-d-Y"); 
           echo " Hora : ".date("g:i a"); 
-		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
+		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2017-11-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
 		
 		$idsquery = sqlsrv_query($idsCone,$idsql);
-		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'";
+		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2017-11-01'";
 		$qx =  sqlsrv_query($idsCone,$q);
 		$r = 0;
 		while(sqlsrv_fetch_array($qx)){
@@ -279,51 +279,54 @@ echo mysqli_error($idCone);
 				  $c = 0;
 			  }
 			  while($R = sqlsrv_fetch_array($idsquery)){
-				  ?>
-				  <form action="registrarnuevo.php" method="post">
-				  <?php
-				  $ncliente = $R["traCli"];
+			  	 	$sqlx = "SELECT * FROM referencias WHERE NREF LIKE '".$R["traReferencia"]."'";
+					$w = mysqli_query($idCone,$sqlx);
+					if(mysqli_fetch_array($w)){
+					}
+					else{
+				  		?>
+				  		<form action="registrarnuevo.php" method="post">
+				  		<?php
+				  		$ncliente = $R["traCli"];
 				 
-				  	$nom = "SELECT Nom FROM dbo.Clientes WHERE CLIENTE_ID LIKE '$ncliente'";
-		$qunom=sqlsrv_query($idsCone,$nom);
-		$nombre = "";
-		if($T = sqlsrv_fetch_array($qunom)){
-			$nombre  = $T["Nom"];
-		}
+				  		$nom = "SELECT Nom FROM dbo.Clientes WHERE CLIENTE_ID LIKE '$ncliente'";
+						$qunom=sqlsrv_query($idsCone,$nom);
+						$nombre = "";
+						if($T = sqlsrv_fetch_array($qunom)){
+							$nombre  = $T["Nom"];
+						}
 			 
-				  $fe =  $R["traFechaAct"]->format("Y-m-d");
-				  $fecnum = strtotime($fe);
-				$mes = date("m") - 1;
-				  $date =strtotime(date("Y-".$mes."-01"));
+				  		$fe =  $R["traFechaAct"]->format("Y-m-d");
+				  		$fecnum = strtotime($fe);
+						$mes = date("m") - 1;
+				  		$date =strtotime(date("Y-".$mes."-01"));
 				
 					   $c++;
-			   ?>
-              <tr>
+			   			?>
+              			<tr>
            
-                <td><?php echo $c ?></td>
-                <td><?php echo $nombre ?> <input type="hidden" name="cliente" value="<?php echo $nombre ?>"></td>
-                <td><?php echo $R["traReferencia"] ?>  <input type="hidden" name="ref" value="<?php echo $R["traReferencia"] ?>"></td>
-                <td><select name="embarque">
-                <option>Consolidado</option>
-                <option>Directo</option>
-                </select></td>
-                <td><?php echo $R["traPedimento"] ?> <input type="hidden" name="pedimento" value="<?php echo $R["traPedimento"] ?>"></td>
-                <td><input type="text" value="N/A" name="subdivisiones"></td>
-            
-                <td>
-                <?php $sqlx = "SELECT * FROM referencias WHERE NREF LIKE '".$R["traReferencia"]."'";
-				$w = mysqli_query($idCone,$sqlx);
-				if(mysqli_fetch_array($w)){
-					echo "Ya registrada";
-				}else{
-				 ?>
-                <input type="submit" value="Comenzar" class="btn btn-sm btn-success"></td>
-                <?php  } ?>
-              </tr>
-            </form>  
-              <?php
+		                <td><?php echo $c ?></td>
+		                <td><?php echo $nombre ?> <input type="hidden" name="cliente" value="<?php echo $nombre ?>"></td>
+		                <td><?php echo $R["traReferencia"] ?>  <input type="hidden" name="ref" value="<?php echo $R["traReferencia"] ?>"></td>
+		                <td><select name="embarque">
+		                <option>Consolidado</option>
+		                <option>Directo</option>
+		                </select></td>
+		                <td><?php echo $R["traPedimento"] ?> <input type="hidden" name="pedimento" value="<?php echo $R["traPedimento"] ?>"></td>
+		                <td><input type="text" value="N/A" name="subdivisiones"></td>
+		            
+		                <td>
+		                
+		                <input type="submit" value="Comenzar" class="btn btn-sm btn-success"></td>
+		                <?php  } ?>
+		              	</tr>
+		            	</form>  
+		              	<?php
 				  
-				  } ?>
+				  }
+				
+
+				   ?>
             </tbody>
           </table>
         </article>
