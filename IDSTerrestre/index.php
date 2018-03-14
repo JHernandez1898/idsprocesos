@@ -4,6 +4,7 @@ session_start();
 include("Template.php");
 require("conect.php");
 
+
 $idCone =  conectar();
 $max = "SELECT MAX(REF) as mr FROM referencias";
 $maxquery =  mysqli_query($idCone,$max);

@@ -13,7 +13,7 @@ if($_POST){
 		if($F['nombre']==$username &&$F["password"] == $contra){
 				
 			$_SESSION['AdminUser']=1;
-			header("Location:index.php?pagina=1&&paginax=1");
+			header("Location:index.php");
 		}
 	
 	}
