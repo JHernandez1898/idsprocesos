@@ -4,11 +4,6 @@ session_start();
 include("Template.php");
 require("conect.php");
 
-
-
-
-  if (!isset($_SESSION['AdminUser']))  header('Location: login.php'); 
-  if (isset($_GET["Logout"])) { unset($_SESSION["AdminUser"]); }
 $idCone =  conectar();
 $max = "SELECT MAX(REF) as mr FROM referencias";
 $maxquery =  mysqli_query($idCone,$max);

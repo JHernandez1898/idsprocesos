@@ -31,7 +31,7 @@ $query = mysqli_query($idCone,$mConsulta);
         </article>
 
         <article class="col-lg-1">
-        	<form method="post" action="nuevo.php">
+        	<form method="post" action="reportes.php">
                   <input type="submit" class=" btn btn-default btn-sm" value = "Reportes">
             </form>
 
@@ -45,6 +45,7 @@ $query = mysqli_query($idCone,$mConsulta);
         	    <tr style="background-color:#0B799B " >
         	      <td>REFERENCIA</td>
         	      <td>CLIENTE</td>
+        	      <td>PASO</td>
         	      <td>&nbsp;</td>
         	      <td>&nbsp;</td>
       	      </tr>
@@ -52,6 +53,29 @@ $query = mysqli_query($idCone,$mConsulta);
         	    <tr>
         	      <td><?php echo $R["REF"] ?></td>
         	      <td><?php echo $R["CLIENTE"] ?></td>
+        	      <td> <table width="200" border="0">
+        	        <tbody>
+        	          <tr>
+                        <?php 
+						$c = 1;
+						while($c <= 8){
+							
+							if($c <= $R["PASO"]){
+								?>
+							 <td bgcolor="#6ADF48"><?php echo $c ?></td>
+							<?php
+							}else{
+							?>
+							 <td bgcolor="#E84D4D"><?php echo $c ?></td>
+							<?php
+							}
+							$c++;
+						}?>
+        	           
+        	           
+      	            </tr>
+      	          </tbody>
+      	        </table></td>
         	      <td>
                   <?php 
 				  $ref =$R["REF"];

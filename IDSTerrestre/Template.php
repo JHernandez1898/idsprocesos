@@ -69,7 +69,7 @@ date_default_timezone_set("America/Mexico_City");
                     </li>
                     <li>
 
-                        <a href="index.php?pagina=1">Maritimo</a>
+                        <a href="../IDSMaritimo/index.php?pagina=1">Maritimo</a>
                     </li>
 					<li>
                         <a href="index.php?pagina=1">Terrestre</a>
