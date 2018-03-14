@@ -55,8 +55,30 @@ date_default_timezone_set("America/Mexico_City");
                     <li class="active">
                         <a href="index.php?pagina=1&&paginax=1">Home</a>
                     </li>
+					<li>
+                        <a href="index.php?pagina=1">Impo</a>
+                    </li>
+					<li>
+                        <a href="index.php?pagina=1">Expo</a>
+                    </li>
+					<li>
+                        <a href="IDSAereo/index.php">Aereo</a>
+                    </li>
+					<li>
+                        <a href="index.php?pagina=1">Ferrocarril</a>
+                    </li>
                     <li>
+
+                        <a href="IDSMaritimo/index.php">Maritimo</a>
+                    </li>
+					<li>
+                        <a href="index.php?pagina=1">Terrestre</a>
+                    </li>
+					<li>
+                      
+
                         <a href="?Logout=yes&&pagina=1&&paginax=1">Cerrar Sesión</a>
+
                     </li>
                    
 		
