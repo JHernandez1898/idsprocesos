@@ -83,7 +83,8 @@ while($F = mysqli_fetch_array($query)){
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
 	$d1;
-	
+	$objPHPExcel->getActiveSheet()->getStyle($column.'6:'.$column.'13') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
+	FORMAT_DATE_TIME2); 
    	if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("d/m/Y g:i a",$R["UNO"]));
 $date1 = date("Y-m-d h:i ",$R["UNO"]);
@@ -139,9 +140,11 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 			
 }
-	$objPHPExcel->getActiveSheet()->getStyle($column.'15:'.$column.'C20') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
+
+	
+	$objPHPExcel->getActiveSheet()->getStyle($column.'15:'.$column.'20') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
 	FORMAT_DATE_TIME8);  
-	$objPHPExcel->getActiveSheet()->getStyle($column.'21:'.$column.'C21') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
+	$objPHPExcel->getActiveSheet()->getStyle($column.'21:'.$column.'21') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
 	FORMAT_NUMBER_00);  
 
 $objPHPExcel->setActiveSheetIndex(0)
