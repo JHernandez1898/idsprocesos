@@ -144,51 +144,72 @@ $objPHPExcel->setActiveSheetIndex(0)
 }
 
 	
-	$objPHPExcel->getActiveSheet()->getStyle($column.'15:'.$column.'20') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
-	FORMAT_DATE_TIME8);  
-	$objPHPExcel->getActiveSheet()->getStyle($column.'21:'.$column.'21') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
-	FORMAT_NUMBER_00);  
+ 
 
 
 $datetime1 = date_create($d1);
 $datetime2 = date_create($d2);
 $interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total = $dias+$horas;
+
 
 $datetime1 = date_create($d2);
 $datetime2 = date_create($d3);
-$interval1 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total1 = $dias+$horas;
+
 
 $datetime1 = date_create($d3);
 $datetime2 = date_create($d5);
-$interval2 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total2 = $dias+$horas;
+
 
 $datetime1 = date_create($d6);
 $datetime2 = date_create($d7);
-$interval3 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total3 = $dias+$horas;
 
 $datetime1 = date_create($d5);
 $datetime2 = date_create($d7);
-$interval4 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total4 = $dias+$horas;
 
 $datetime1 = date_create($d7);
 $datetime2 = date_create($d8);
-$interval5 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a")  * 24;
+$horas =  $interval->format("%H");
+$total5 = $dias+$horas;
 
 $datetime1 = date_create($d1);
 $datetime2 = date_create($d8);
-$interval6 = date_diff($datetime1, $datetime2);
+$interval = date_diff($datetime1, $datetime2);
+$dias  = $interval->format("%a");
+$horas =  $interval->format("%H");
+$total6 = $dias+$horas;
 
 
 
 
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."15", $interval->format("%H:%I:%S"))
-			->setCellValue($column."16", $interval1->format("%H:%I:%S"))
-			->setCellValue($column."17", $interval2->format("%H:%I:%S"))
-			->setCellValue($column."18", $interval3->format("%H:%I:%S"))
-			->setCellValue($column."19", $interval4->format("%H:%I:%S"))
-			->setCellValue($column."20", $interval5->format("%H:%I:%S"))
-            ->setCellValue($column."21", $interval6->format("%H:%I:%S"));
+			->setCellValue($column."15", $total)
+			->setCellValue($column."16", $total1)
+			->setCellValue($column."17", $total2)
+			->setCellValue($column."18", $total3)
+			->setCellValue($column."19", $total4)
+			->setCellValue($column."20", $total5)
+            ->setCellValue($column."21", $dias);
 			
 				
 	$column++;
