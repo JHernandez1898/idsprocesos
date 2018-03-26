@@ -88,19 +88,20 @@ while($F = mysqli_fetch_array($query)){
    	if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("m/d/Y g:i a",$R["UNO"]));
 $date1 = date("Y-m-d h:i ",$R["UNO"]);
-$d1 = $R["UNO"];
+$d1 =  date("Y-m-d h:i",$R["UNO"]);
 		
 			
 }
 $d2;
 if($R = mysqli_fetch_array($pasodos)){			
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("m/d/Y g:i a",$R["UNO"]));
-	$d2 = $R["UNO"];		
+	$d2 =  date("Y-m-d h:i",$R["UNO"]);
 			
 }
 if($R = mysqli_fetch_array($pasotres)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."8", date("m/d/Y g:i a",$R["UNO"]));
+			$d3 =  date("Y-m-d h:i",$R["UNO"]);
 		
 
 			
@@ -108,13 +109,14 @@ $objPHPExcel->setActiveSheetIndex(0)
 if($R = mysqli_fetch_array($pasocuatro)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."9", date("m/d/Y g:i a",$R["UNO"]));
-		
+			$d4 =  date("Y-m-d h:i",$R["UNO"]);
 
 			
 }
 if($R = mysqli_fetch_array($pasocinco)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."10", date("m/d/Y g:i a",$R["UNO"]));
+			$d5 =  date("Y-m-d h:i",$R["UNO"]);
 		
 
 			
@@ -122,20 +124,20 @@ $objPHPExcel->setActiveSheetIndex(0)
 if($R = mysqli_fetch_array($pasoseis)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."11", date("m/d/Y g:i a",$R["UNO"]));
-		
-
+			$d6 =  date("Y-m-d h:i",$R["UNO"]);
 			
 }
 if($R = mysqli_fetch_array($pasosiete)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."12", date("m/d/Y g:i a",$R["UNO"]));
-			
+			$d7 =  date("Y-m-d h:i",$R["UNO"]);
 
 			
 }
 if($R = mysqli_fetch_array($pasoocho)){			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."13", date("m/d/Y g:i a",$R["UNO"]));
+			$d8 =  date("Y-m-d h:i",$R["UNO"]);
 		
 
 			
@@ -147,14 +149,46 @@ $objPHPExcel->setActiveSheetIndex(0)
 	$objPHPExcel->getActiveSheet()->getStyle($column.'21:'.$column.'21') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
 	FORMAT_NUMBER_00);  
 
+
+$datetime1 = date_create($d1);
+$datetime2 = date_create($d2);
+$interval = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d2);
+$datetime2 = date_create($d3);
+$interval1 = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d3);
+$datetime2 = date_create($d5);
+$interval2 = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d6);
+$datetime2 = date_create($d7);
+$interval3 = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d5);
+$datetime2 = date_create($d7);
+$interval4 = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d7);
+$datetime2 = date_create($d8);
+$interval5 = date_diff($datetime1, $datetime2);
+
+$datetime1 = date_create($d1);
+$datetime2 = date_create($d8);
+$interval6 = date_diff($datetime1, $datetime2);
+
+
+
+
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."15", '=+'.$column.'7-'.$column.'6')
-			->setCellValue($column."16", '=+'.$column.'8-'.$column.'7')
-			->setCellValue($column."17", '=+'.$column.'10-'.$column.'8')
-			->setCellValue($column."18", '=+'.$column.'12-'.$column.'11')
-			->setCellValue($column."19", '=+'.$column.'12-'.$column.'10')
-			->setCellValue($column."20", '=+'.$column.'13-'.$column.'12')
-            ->setCellValue($column."21", '=+'.$column.'13-'.$column.'6');
+			->setCellValue($column."15", $interval->format("%H:%I:%S"))
+			->setCellValue($column."16", $interval1->format("%H:%I:%S"))
+			->setCellValue($column."17", $interval2->format("%H:%I:%S"))
+			->setCellValue($column."18", $interval3->format("%H:%I:%S"))
+			->setCellValue($column."19", $interval4->format("%H:%I:%S"))
+			->setCellValue($column."20", $interval5->format("%H:%I:%S"))
+            ->setCellValue($column."21", $interval6->format("%H:%I:%S"));
 			
 				
 	$column++;
