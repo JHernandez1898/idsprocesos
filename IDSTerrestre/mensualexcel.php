@@ -111,55 +111,55 @@ while($F = mysqli_fetch_array($query)){
 	$date1;
 	$d1;
    	if($R = mysqli_fetch_array($pasouno)){			
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("d/m/Y g:i a",$R["FECDOS"]));
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("m/d/Y g:i a",$R["FECDOS"]));
 $date1 = date("Y-m-d h:i ",$R["FECDOS"]);
 $d1 = $R["FECDOS"];
 		
 			
 }
 if($R = mysqli_fetch_array($pasodos)){			
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("d/m/Y g:i a",$R["FEC"]));
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("m/d/Y g:i a",$R["FEC"]));
 			
 			
 }
 if($R = mysqli_fetch_array($pasotres)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."8", date("d/m/Y g:i a",$R["FECDOS"]));
+			->setCellValue($column."8", date("m/d/Y g:i a",$R["FECDOS"]));
 		
 
 			
 }
 if($R = mysqli_fetch_array($pasocuatro)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."9", date("d/m/Y g:i a",$R["FECDOS"]));
+			->setCellValue($column."9", date("m/d/Y g:i a",$R["FECDOS"]));
 		
 
 			
 }
 if($R = mysqli_fetch_array($pasocinco)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."10", date("d/m/Y g:i a",$R["TRES"]));
+			->setCellValue($column."10", date("m/d/Y g:i a",$R["TRES"]));
 		
 
 			
 }
 if($R = mysqli_fetch_array($pasoseis)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."11", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."11", date("m/d/Y g:i a",$R["UNO"]));
 		
 
 			
 }
 if($R = mysqli_fetch_array($pasosiete)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."12", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."12", date("m/d/Y g:i a",$R["UNO"]));
 			
 
 			
 }
 if($R = mysqli_fetch_array($pasoocho)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."13", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."13", date("m/d/Y g:i a",$R["UNO"]));
 		
 
 			
@@ -167,34 +167,34 @@ $objPHPExcel->setActiveSheetIndex(0)
 $date9;
 if($R = mysqli_fetch_array($pasonueve)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."14", date("d/m/Y g:i a",$R["DOS"]));
+			->setCellValue($column."14", date("m/d/Y g:i a",$R["DOS"]));
 			$date9  =date("Y-m-d h:i",$R["DOS"]);
 
 			
 }
 if($R = mysqli_fetch_array($pasodiez)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."15", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."15", date("m/d/Y g:i a",$R["UNO"]));
 
 			
 }
 if($R = mysqli_fetch_array($pasoonce)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."16", date("d/m/Y g:i a",$R["DOS"]));
+			->setCellValue($column."16", date("m/d/Y g:i a",$R["DOS"]));
 	
 
 			
 }
 if($R = mysqli_fetch_array($pasodoce)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."17", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."17", date("m/d/Y g:i a",$R["UNO"]));
 		
 
 			
 }
 if($R = mysqli_fetch_array($pasotrece)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."18", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."18", date("m/d/Y g:i a",$R["UNO"]));
 			
 
 			
@@ -202,7 +202,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 $date14;
 if($R = mysqli_fetch_array($pasocatorce)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."19", date("d/m/Y g:i a",$R["DOS"]));
+			->setCellValue($column."19", date("m/d/Y g:i a",$R["DOS"]));
 		$date14 = date("Y-m-d h:i ",$R["DOS"]);
 
 
@@ -212,7 +212,7 @@ $d15;
 $date15 ;	
 if($R = mysqli_fetch_array($pasoquince)){			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."20", date("d/m/Y g:i a",$R["UNO"]));
+			->setCellValue($column."20", date("m/d/Y g:i a",$R["UNO"]));
 			$date15 = date("Y-m-d h:i ",$R["UNO"]);
 			$d15 = $R["UNO"];
 

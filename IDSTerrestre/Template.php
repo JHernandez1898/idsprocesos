@@ -56,32 +56,24 @@ date_default_timezone_set("America/Mexico_City");
                         <a href="index.php?pagina=1&&paginax=1">Home</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Impo</a>
+                     	<a href="">Terrestre</a>
+						  <a href="IDSTerrestre/index.php">Impo</a>
+						  <a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Expo</a>
+                        <a href="">Maritimo</a>
+						<a href="IDSMaritimo/index.php">Impo</a>
+						<a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Aereo</a>
+                        <a href="">Aereo</a>
+							  <a href="IDSAereo/index.php">Impo</a>
+						  <a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Ferrocarril</a>
-                    </li>
-                    <li>
-
-                        <a href="../IDSMaritimo/index.php?pagina=1">Maritimo</a>
-                    </li>
-					<li>
-                        <a href="index.php?pagina=1">Terrestre</a>
-                    </li>
-					<li>
-                      
-
                         <a href="?Logout=yes&&pagina=1&&paginax=1">Cerrar Sesión</a>
-
                     </li>
-                   
-		
+                   		
                 </ul>
 
 				<!-- Search -->

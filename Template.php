@@ -1,6 +1,4 @@
 <?php
-
-
 ini_set('max_execution_time', 300);
 date_default_timezone_set("America/Mexico_City");
 ?>
@@ -56,34 +54,49 @@ date_default_timezone_set("America/Mexico_City");
                         <a href="index.php?pagina=1&&paginax=1">Home</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Impo</a>
+                     	<a href="">Desp-Terrestre</a>
+						  <a href="IDSTerrestre/index.php">Impo</a>
+						  <a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Expo</a>
+                        <a href="">Desp-Maritimo</a>
+						<a href="IDSMaritimo/index.php">Impo</a>
+						<a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="IDSAereo/index.php">Aereo</a>
+                        <a href="">Desp-Aereo</a>
+							  <a href="IDSAereo/index.php">Impo</a>
+						  <a href="">Expo</a>
                     </li>
 					<li>
-                        <a href="index.php?pagina=1">Ferrocarril</a>
-                    </li>
-                    <li>
-
-                        <a href="IDSMaritimo/index.php">Maritimo</a>
-                    </li>
-					<li>
-                        <a href="IDSTerrestre/index.php?pagina=1&&paginax=1">Terrestre</a>
-                    </li>
-					<li>
-                      
-
                         <a href="?Logout=yes&&pagina=1&&paginax=1">Cerrar Sesión</a>
-
                     </li>
-                   
-		
                 </ul>
-
+				
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Enlace #1</a></li>
+      <li><a href="#">Enlace #2</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Menú #1 <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Acción #1</a></li>
+          <li><a href="#">Acción #2</a></li>
+          <li><a href="#">Acción #3</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Acción #4</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Acción #5</a></li>
+        </ul>
+      </li>
+    </ul>
+				
+				
+				
 				<!-- Search -->
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
