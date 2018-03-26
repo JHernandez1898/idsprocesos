@@ -195,7 +195,7 @@ echo mysqli_error($idCone);
 		
       	else {
          	//si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
-         	echo "<a href='index.php?pagina=$i'>";
+         	echo "<a href='index.php?pagina=$i&&paginax=1'>";
 			?> <input type="button" class="btn btn-default btn-sm" value="<?php echo $i ?>"  width="10" height="10"><?php
 			echo "</a>"; 
 		}
