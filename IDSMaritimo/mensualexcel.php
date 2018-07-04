@@ -196,10 +196,8 @@ $datetime1 = date_create($d1);
 $datetime2 = date_create($d8);
 $interval = date_diff($datetime1, $datetime2);
 $dias  = $interval->format("%a");
-$horas =  $interval->format("%H");
-$total6 = $dias+$horas;
 
-
+$suma =$suma + $dias;
 
 
 $objPHPExcel->setActiveSheetIndex(0)
@@ -215,33 +213,12 @@ $objPHPExcel->setActiveSheetIndex(0)
 	$column++;
 	$c++;
 
-/*$fines = 0 ;
-$domsab = 0 ;
-$d = 0 ;
-for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
-	{
-		$d++;
-	$dia = date('l',$c);
-		if($dia == 'Saturday'||$dia== 'Sunday'){
-			$fines = 1;
-			$domsab++;
-			if($domsab>2){
-				$fines++;
-
-			}
-		}
-
-	
-	}
-
-$suma = $suma + $d;*/
-
 	
 }
 
 $promedio  = $suma/$f ;
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue("D33",$promedio." dias");
+			->setCellValue("D22",$promedio." dias");
 
 
 
