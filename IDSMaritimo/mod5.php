@@ -29,7 +29,7 @@ if($query){
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Elaboracion de documentos 
+        	Elaboracion de documentos						(Proceso...#5) 
       </h1>
     </div>
     <div class="row">

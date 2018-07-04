@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set('America/Mexico_City');
 require("Template.php");
 include("conect.php");
 $idCone =  conectar();
@@ -33,7 +34,7 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
 
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Detalles
+        	Detalles Maritimo
       </h1>
     </div>
     <?php if($F = mysqli_fetch_array($query)){ ?>
@@ -45,7 +46,8 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
           <tr>
             <td><b>PLAN DE CALIDAD DEL PROCEDIMIENTO DE IMPORTACION<b></td>
             <td>Cliente: <?php echo $F["CLIENTE"]?></td>
-            <td> N° Referencia: <?php echo $F["NREF"]?></td>
+            <td> N° Referencia: <img src="barcode.php?text=<?php echo $F["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /></td>
           </tr>
         </tbody>
       </table>
@@ -189,6 +191,21 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
               <td>Despacho de Embarque</td>
               <td>Personal de Tráfico</td>
               <?php if($R = mysqli_fetch_array($pasoocho)){?>
+              <td>
+			  
+			 	<?php echo date("m-d-Y g:i a",$R["UNO"]);?>
+               </td>
+              <td>
+              <?php echo $R["IUNO"]?>
+			  
+			                </td>
+              <?php }?>
+            </tr>
+            <tr>
+              <td>9°</td>
+              <td>Zarpe de Buque</td>
+              <td>Personal de Tráfico</td>
+              <?php if($R = mysqli_fetch_array($pasonueve)){?>
               <td>
 			  
 			 	<?php echo date("m-d-Y g:i a",$R["UNO"]);?>

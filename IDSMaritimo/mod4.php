@@ -29,7 +29,7 @@ if($query){
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Etiquetar
+        	Etiquetar						(Proceso...#4)
       </h1>
     </div>
     <div class="row">

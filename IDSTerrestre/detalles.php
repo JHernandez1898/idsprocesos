@@ -45,7 +45,8 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
           <tr>
             <td><b>PLAN DE CALIDAD DEL PROCEDIMIENTO DE IMPORTACION<b></td>
             <td>Cliente: <?php echo $F["CLIENTE"]?></td>
-            <td> N° Referencia: <?php echo $F["NREF"]?></td>
+            <td> N° Referencia: <img src="barcode.php?text=<?php echo $F["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /></td>
           </tr>
         </tbody>
       </table>

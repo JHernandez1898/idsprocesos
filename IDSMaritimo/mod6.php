@@ -29,7 +29,7 @@ if($query){
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Solicitar carga de mercancias
+        	Solicitar carga de mercancias						(Proceso...#6)
       </h1>
     </div>
     <div class="row">

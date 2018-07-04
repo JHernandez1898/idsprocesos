@@ -49,7 +49,7 @@ tr,td {  border: 0px;  }
   <table width="100%" height="100%" align="center">
   <tr valign="top">
    <td>
-     <img src=".../imagenes/logo_tlc.png" />
+     <img src="Recursos/imagenes/logo.PNG" />
    </td>
   </tr>
   </table>  

@@ -47,12 +47,13 @@ if($_POST){
 	<link rel="stylesheet" type="text/css" href="Recursos/login/css/main.css">
 <!--===============================================================================================-->
 </head>
+
 <body>
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('Recursos/login/images/img-01.jpg');">
 			<div class="wrap-login100 p-t-190 p-b-30">
-				<form class="login100-form validate-form" method="post" action="login.php">
+				<form class="login100-form validate-form" method="post" action="Template.php">
 					<div class="login100-form-avatar">
 						<img src="Recursos/login/images/avatar-01.jpg" alt="AVATAR">
 					</div>
@@ -98,6 +99,7 @@ if($_POST){
 			</div>
 		</div>
 	</div>
+  
 	
 	
 

@@ -29,7 +29,7 @@ if($query){
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Manifiesto de mercancias
+        	Manifiesto de mercancias 						(Proceso...#3)
       </h1>
     </div>
     <div class="row">

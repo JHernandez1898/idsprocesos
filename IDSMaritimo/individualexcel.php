@@ -23,6 +23,7 @@ $pasocinco =  mysqli_query($idCone,"SELECT * FROM pasocinco WHERE REF LIKE '$ref
 $pasoseis =  mysqli_query($idCone,"SELECT * FROM pasoseis WHERE REF LIKE '$ref'");
 $pasosiete =  mysqli_query($idCone,"SELECT * FROM pasosiete WHERE REF LIKE '$ref'");
 $pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'");
+$pasonueve =  mysqli_query($idCone,"SELECT * FROM pasonueve WHERE REF LIKE '$ref'");
 
 /** Incluye PHPExcel */
 require_once("Recursos/excel/PHPExcel/PHPExcel/Classes/PHPExcel.php");
@@ -49,7 +50,9 @@ $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A4', 'OPERACIÓN')
             ->setCellValue('B4', 'RESPONSABLE')
 			->setCellValue('C4', 'FECHA')
-			->setCellValue('D4', 'INICIALES');
+			->setCellValue('D4', 'INICIALES')
+			->setCellValue('E3', 'FORMATO')
+			->setCellValue('E4', 'L-FO25C');
 			
 if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)
@@ -129,6 +132,14 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('C12', date("m-d-Y g:i a",$R["UNO"]))
 			->setCellValue('D12', $R["IUNO"]);
 
+}
+if($R = mysqli_fetch_array($pasonueve)){			
+$objPHPExcel->setActiveSheetIndex(0)
+         
+			->setCellValue('A13',"Zarpe de Buque")
+            ->setCellValue('B13', "Personal de Tráfico")
+			->setCellValue('C13', date("m-d-Y g:i a",$R["UNO"]))
+			->setCellValue('D13', $R["IUNO"]);
 			
 }
 	
@@ -148,7 +159,7 @@ $objPHPExcel->getActiveSheet()->getRowDimension("5")->setRowHeight(50);
 
 $objPHPExcel->getActiveSheet()->getDefaultStyle()->getAlignment()->setWrapText(true);
 
-$rango="A2:D12";
+$rango="A2:D13";
 $styleArray = array('font' => array( 'name' => 'Arial','size' => 10),
 'borders'=>array('allborders'=>array('style'=> PHPExcel_Style_Border::BORDER_THIN,'color'=>array('argb' => 'FFF')))
 );
