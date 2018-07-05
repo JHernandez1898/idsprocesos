@@ -157,6 +157,9 @@ while($F = mysqli_fetch_array($query)){
 	$pasoveinte =  mysqli_query($idCone,"SELECT * FROM pasoveinte WHERE REF LIKE '$ref'");
 	
 	//$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
+	if($R = mysqli_fetch_array($referencias)){
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$R["NREF"]);	
+		}
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
 	$d1;
