@@ -2,8 +2,12 @@
 include("conect.php");
 $idCone = conectar();
 $mes =  $_POST["month"];
+$mesnumero =  substr($mes,5,2);
+$año  = substr($mes,0,4);
 $fecnum = strtotime($mes);
-$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
+$final =  strtotime($año."-"."0".($mesnumero + 1));
+$SQL = "SELECT * FROM pasoveinte WHERE UNO >='$fecnum' AND UNO < '$final'";
+//$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
 $query = mysqli_query($idCone,$SQL);
 
 /** Incluye PHPExcel */
@@ -152,494 +156,303 @@ while($F = mysqli_fetch_array($query)){
 	$pasodiecinueve =  mysqli_query($idCone,"SELECT * FROM pasodiecinueve WHERE REF LIKE '$ref'");
 	$pasoveinte =  mysqli_query($idCone,"SELECT * FROM pasoveinte WHERE REF LIKE '$ref'");
 	
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
+	//$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
 	$d1;
-<<<<<<< HEAD
-	
-=======
 	$objPHPExcel->getActiveSheet()->getStyle($column.'6:'.$column.'25') ->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::					
 	FORMAT_DATE_TIME2);  
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
 	
-   	if($R = mysqli_fetch_array($pasouno)){			
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("m/d/Y g:i a",$R["UNO"]));
-$d1 = date("Y-m-d h:i ",$R["UNO"]);
+   	if($R = mysqli_fetch_array($pasouno)){
 
-		
-			
-}
-$d2;
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."6", date("m/d/Y g:i a",$R["UNO"]));
+		$date1 = date("Y-m-d h:i ",$R["UNO"]);
+		$d1 = date("Y-m-d h:i ",$R["UNO"]);		
+     }
+	$d2;
 
-if($R = mysqli_fetch_array($pasodos)){			
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-		
-	$d2 = date("Y-m-d h:i ",$R["UNO"]);	
-=======
-$date2 = date("Y-m-d h:i ",$R["UNO"]);
-$d2 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-			
-}
-$d3;
-if($R = mysqli_fetch_array($pasotres)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."8", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d3 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date3 = date("Y-m-d h:i ",$R["UNO"]);
-$d3 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+	if($R = mysqli_fetch_array($pasodos)){			
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."7", date("m/d/Y g:i a",$R["UNO"]));
+	$date2 = date("Y-m-d h:i ",$R["UNO"]);
+	$d2 = $R["UNO"];					
+	}
+	$d3;
+	if($R = mysqli_fetch_array($pasotres)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."8", date("m/d/Y g:i a",$R["UNO"]));
+	$date3 = date("Y-m-d h:i ",$R["UNO"]);
+	$d3 = $R["UNO"];		
 
-			
-}
-$d4;
-if($R = mysqli_fetch_array($pasocuatro)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."9", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d4 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date4 = date("Y-m-d h:i ",$R["UNO"]);
-$d4 = $R["UNO"];			
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$d4;
+	if($R = mysqli_fetch_array($pasocuatro)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."9", date("m/d/Y g:i a",$R["UNO"]));
+	$date4 = date("Y-m-d h:i ",$R["UNO"]);
+	$d4 = $R["UNO"];			
 
-			
-}
-$d5;
-if($R = mysqli_fetch_array($pasocinco)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."10", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d5 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-	$date5 = date("Y-m-d h:i ",$R["UNO"]);
-$d5 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$d5;
+	if($R = mysqli_fetch_array($pasocinco)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."10", date("m/d/Y g:i a",$R["UNO"]));
+		$date5 = date("Y-m-d h:i ",$R["UNO"]);
+	$d5 = $R["UNO"];		
 
-			
-}
-$d6;
-if($R = mysqli_fetch_array($pasoseis)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."11", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d6 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-	$date6 = date("Y-m-d h:i ",$R["UNO"]);
-$d6 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$d6;
+	if($R = mysqli_fetch_array($pasoseis)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."11", date("m/d/Y g:i a",$R["UNO"]));
+		$date6 = date("Y-m-d h:i ",$R["UNO"]);
+	$d6 = $R["UNO"];		
 
-			
-}
-$d7;
-if($R = mysqli_fetch_array($pasosiete)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."12", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d7 = date("Y-m-d h:i ",$R["UNO"]);
-			
-=======
-$date7 = date("Y-m-d h:i ",$R["UNO"]);
-$d7 = $R["UNO"];				
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$d7;
+	if($R = mysqli_fetch_array($pasosiete)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."12", date("m/d/Y g:i a",$R["UNO"]));
+	$date7 = date("Y-m-d h:i ",$R["UNO"]);
+	$d7 = $R["UNO"];				
 
-			
-}
-$d8;
-if($R = mysqli_fetch_array($pasoocho)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."13", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d8 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date8 = date("Y-m-d h:i ",$R["UNO"]);
-$d8 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$d8;
+	if($R = mysqli_fetch_array($pasoocho)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."13", date("m/d/Y g:i a",$R["UNO"]));
+	$date8 = date("Y-m-d h:i ",$R["UNO"]);
+	$d8 = $R["UNO"];		
 
-			
-}
-$date9;
-if($R = mysqli_fetch_array($pasonueve)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."14", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d9 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-			$date9  =date("Y-m-d h:i",$R["UNO"]);
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
+				
+	}
+	$date9;
+	if($R = mysqli_fetch_array($pasonueve)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."14", date("m/d/Y g:i a",$R["UNO"]));
+				$date9  =date("Y-m-d h:i",$R["UNO"]);
 
-			
-}
-$date10;
-if($R = mysqli_fetch_array($pasodiez)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."15", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d10= date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-			$date10  =date("Y-m-d h:i",$R["UNO"]);
-
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d11;
-if($R = mysqli_fetch_array($pasoonce)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."16", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d11 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date11 = date("Y-m-d h:i ",$R["UNO"]);
-$d11 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d12;
-if($R = mysqli_fetch_array($pasodoce)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."17", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d12 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date12 = date("Y-m-d h:i ",$R["UNO"]);
-$d12 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d13;
-if($R = mysqli_fetch_array($pasotrece)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."18", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d13 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-$date13 = date("Y-m-d h:i ",$R["UNO"]);
-$d13 = $R["UNO"];			
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$date14;
-if($R = mysqli_fetch_array($pasocatorce)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."19", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d14 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-			$date14 = date("Y-m-d h:i ",$R["UNO"]);
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d15;
-$date15 ;
-if($R = mysqli_fetch_array($pasoquince)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."20", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d15 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-		$date15 = date("Y-m-d h:i ",$R["UNO"]);
-			$d15 = $R["UNO"];
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d16;
-if($R = mysqli_fetch_array($pasodieciseis)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."21", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d16 = date("Y-m-d h:i ",$R["UNO"]);
-		
-=======
-		$date16 = date("Y-m-d h:i ",$R["UNO"]);	
-$d16 = $R["UNO"];		
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-
-			
-}
-$d17;
-if($R = mysqli_fetch_array($pasodiecisiete)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."22", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d17 = date("Y-m-d h:i ",$R["UNO"]);
-		
-
-=======
-		$date17 = date("Y-m-d h:i ",$R["UNO"]);	
-$d17 = $R["UNO"];
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-			
-}
-$d18;
-$date18 ;
-if($R = mysqli_fetch_array($pasodieciocho)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."23", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d18 = date("Y-m-d h:i ",$R["UNO"]);
-		
-
-=======
-		$date18 = date("Y-m-d h:i ",$R["UNO"]);		
-$d18 = $R["UNO"];
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-			
-}
-$d19;
-$date19 ;
-if($R = mysqli_fetch_array($pasodiecinueve)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."24", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d19 = date("Y-m-d h:i ",$R["UNO"]);
-		
-
-=======
-		$date19 = date("Y-m-d h:i ",$R["UNO"]);
-	$d19 = $R["UNO"];
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
-			
-}
-$d20;
-$date20 ;
-if($R = mysqli_fetch_array($pasoveinte)){			
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."25", date("m/d/Y g:i a",$R["UNO"]));
-<<<<<<< HEAD
-			$d20 = date("Y-m-d h:i ",$R["UNO"]);			
-}  
-
-$datetime1 = date_create($d1);
-$datetime2 = date_create($d2);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total = $dias+$horas; 
-
-$datetime1 = date_create($d2);
-$datetime2 = date_create($d4);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total1 = $dias+$horas; 
-
-$datetime1 = date_create($d4);
-$datetime2 = date_create($d6);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total2 = $dias+$horas;
-
-$datetime1 = date_create($d6);
-$datetime2 = date_create($d7);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total3 = $dias+$horas;
-
-$datetime1 = date_create($d7);
-$datetime2 = date_create($d10);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total4 = $dias+$horas;
-
-$datetime1 = date_create($d10);
-$datetime2 = date_create($d12);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total5 = $dias+$horas;
-
-$datetime1 = date_create($d12);
-$datetime2 = date_create($d13);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total6 = $dias+$horas;
-
-$datetime1 = date_create($d13);
-$datetime2 = date_create($d17);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total7 = $dias+$horas;
-
-$datetime1 = date_create($d17);
-$datetime2 = date_create($d18);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total8 = $dias+$horas;
-
-$datetime1 = date_create($d18);
-$datetime2 = date_create($d20);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a")  * 24;
-$horas =  $interval->format("%H");
-$total9 = $dias+$horas;
-
-$datetime1 = date_create($d1);
-$datetime2 = date_create($d20);
-$interval = date_diff($datetime1, $datetime2);
-$dias  = $interval->format("%a");
+				
+	}
+	$date10;
+	if($R = mysqli_fetch_array($pasodiez)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."15", date("m/d/Y g:i a",$R["UNO"]));
+				$date10  =date("Y-m-d h:i",$R["UNO"]);
 
 
-$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."27",$total)
-			->setCellValue($column."28",$total1)
-			->setCellValue($column."29",$total2)
-			->setCellValue($column."30",$total3)
-			->setCellValue($column."31",$total4)
-			->setCellValue($column."32",$total5)
-            ->setCellValue($column."33",$total6)
-			->setCellValue($column."34",$total7)
-			->setCellValue($column."35",$total8)
-			->setCellValue($column."36",$total9)
-            ->setCellValue($column."37",$dias);				
-=======
-			$date20 = date("Y-m-d h:i ",$R["UNO"]);
-			$d20 = $R["UNO"];
+				
+	}
+	$d11;
+	if($R = mysqli_fetch_array($pasoonce)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."16", date("m/d/Y g:i a",$R["UNO"]));
+	$date11 = date("Y-m-d h:i ",$R["UNO"]);
+	$d11 = $R["UNO"];		
 
-			
-}
-// REFERENCIA DE OPERACION 2-1
-$datetime1 = date_create($date1); // 9 anteriormente
-$datetime2 = date_create($date2); // 14 anteriormente
-$interval = date_diff($datetime1, $datetime2);
-$horas = $interval->format("%H");
-$dias = $interval->format("%d");
-$horasdias  = $dias * 24 ;
+				
+	}
+	$d12;
+	if($R = mysqli_fetch_array($pasodoce)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."17", date("m/d/Y g:i a",$R["UNO"]));
+	$date12 = date("Y-m-d h:i ",$R["UNO"]);
+	$d12 = $R["UNO"];		
 
-// REFERENCIA DE OPERACION 4-2
-$datetime1 = date_create($date2);
-$datetime2 = date_create($date4);
-$interval2 = date_diff($datetime1, $datetime2);
-$horas2 = $interval2->format("%H");
-$dias2 = $interval2->format("%d");
-$horasdias2  = $dias2 * 24 ;
+				
+	}
+	$d13;
+	if($R = mysqli_fetch_array($pasotrece)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."18", date("m/d/Y g:i a",$R["UNO"]));
+	$date13 = date("Y-m-d h:i ",$R["UNO"]);
+	$d13 = $R["UNO"];			
 
-// REFERENCIA DE OPERACION 7-4
-$datetime1 = date_create($date4);
-$datetime2 = date_create($date7);
-$interval7 = date_diff($datetime1, $datetime2);
-$horas7 = $interval7->format("%H");
-$dias7 = $interval7->format("%d");
-$horasdias7  = $dias7 * 24 ;
+				
+	}
+	$date14;
+	if($R = mysqli_fetch_array($pasocatorce)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."19", date("m/d/Y g:i a",$R["UNO"]));
+				$date14 = date("Y-m-d h:i ",$R["UNO"]);
 
-// REFERENCIA DE OPERACION 8-7
-$datetime1 = date_create($date7);
-$datetime2 = date_create($date8);
-$interval8 = date_diff($datetime1, $datetime2);
-$horas8 = $interval8->format("%H");
-$dias8 = $interval8->format("%d");
-$horasdias8  = $dias8 * 24 ;
+				
+	}
+	$d15;
+	$date15 ;
+	if($R = mysqli_fetch_array($pasoquince)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."20", date("m/d/Y g:i a",$R["UNO"]));
+			$date15 = date("Y-m-d h:i ",$R["UNO"]);
+				$d15 = $R["UNO"];
 
-// REFERENCIA DE OPERACION 11-8
-$datetime1 = date_create($date8);
-$datetime2 = date_create($date11);
-$interval99 = date_diff($datetime1, $datetime2);
-$horas99 = $interval99->format("%H");
-$dias99 = $interval99->format("%d");
-$horasdias99  = $dias99 * 24 ;
+				
+	}
+	$d16;
+	if($R = mysqli_fetch_array($pasodieciseis)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."21", date("m/d/Y g:i a",$R["UNO"]));
+			$date16 = date("Y-m-d h:i ",$R["UNO"]);	
+	$d16 = $R["UNO"];		
 
-// REFERENCIA DE OPERACION 13-11
-$datetime1 = date_create($date11);
-$datetime2 = date_create($date13);
-$interval10 = date_diff($datetime1, $datetime2);
-$horas10 = $interval10->format("%H");
-$dias10 = $interval10->format("%d");
-$horasdias10  = $dias10 * 24 ;
+				
+	}
+	$d17;
+	if($R = mysqli_fetch_array($pasodiecisiete)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."22", date("m/d/Y g:i a",$R["UNO"]));
+			$date17 = date("Y-m-d h:i ",$R["UNO"]);	
+	$d17 = $R["UNO"];
+				
+	}
+	$d18;
+	$date18 ;
+	if($R = mysqli_fetch_array($pasodieciocho)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."23", date("m/d/Y g:i a",$R["UNO"]));
+			$date18 = date("Y-m-d h:i ",$R["UNO"]);		
+	$d18 = $R["UNO"];
+				
+	}
+	$d19;
+	$date19 ;
+	if($R = mysqli_fetch_array($pasodiecinueve)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."24", date("m/d/Y g:i a",$R["UNO"]));
+			$date19 = date("Y-m-d h:i ",$R["UNO"]);
+		$d19 = $R["UNO"];
+				
+	}
+	$d20;
+	$date20 ;
+	if($R = mysqli_fetch_array($pasoveinte)){			
+	$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue($column."25", date("m/d/Y g:i a",$R["UNO"]));
+				$date20 = date("Y-m-d h:i ",$R["UNO"]);
+				$d20 = $R["UNO"];
 
-// REFERENCIA DE OPERACION 14-13
-$datetime1 = date_create($date13);
-$datetime2 = date_create($date14);
-$interval11 = date_diff($datetime1, $datetime2);
-$horas11 = $interval11->format("%H");
-$dias11 = $interval11->format("%d");
-$horasdias11  = $dias11 * 24 ;
+				
+	}
+	// REFERENCIA DE OPERACION 2-1
+	$datetime1 = date_create($date1); // 9 anteriormente
+	$datetime2 = date_create($date2); // 14 anteriormente
+	$interval = date_diff($datetime1, $datetime2);
+	$horas = $interval->format("%H");
+	$dias = $interval->format("%d");
+	$horasdias  = $dias * 24 ;
 
-// REFERENCIA DE OPERACION 18-14
-$datetime1 = date_create($date14);
-$datetime2 = date_create($date18);
-$interval12 = date_diff($datetime1, $datetime2);
-$horas12 = $interval12->format("%H");
-$dias12 = $interval12->format("%d");
-$horasdias12  = $dias12 * 24 ;
+	// REFERENCIA DE OPERACION 4-2
+	$datetime1 = date_create($date2);
+	$datetime2 = date_create($date4);
+	$interval2 = date_diff($datetime1, $datetime2);
+	$horas2 = $interval2->format("%H");
+	$dias2 = $interval2->format("%d");
+	$horasdias2  = $dias2 * 24 ;
 
-// REFERENCIA DE OPERACION 19-18
-$datetime1 = date_create($date18);
-$datetime2 = date_create($date19);
-$interval13 = date_diff($datetime1, $datetime2);
-$horas13 = $interval13->format("%H");
-$dias13 = $interval13->format("%d");
-$horasdias13  = $dias13 * 24 ;
+	// REFERENCIA DE OPERACION 7-4
+	$datetime1 = date_create($date4);
+	$datetime2 = date_create($date7);
+	$interval7 = date_diff($datetime1, $datetime2);
+	$horas7 = $interval7->format("%H");
+	$dias7 = $interval7->format("%d");
+	$horasdias7  = $dias7 * 24 ;
 
-// REFERENCIA DE OPERACION 20-19
-$datetime1 = date_create($date19);
-$datetime2 = date_create($date20);
-$interval14 = date_diff($datetime1, $datetime2);
-$horas14 = $interval14->format("%H %I %S");
-$dias14 = $interval14->format("%d");
-$horasdias14  = $dias14 * 24 ;
+	// REFERENCIA DE OPERACION 8-7
+	$datetime1 = date_create($date7);
+	$datetime2 = date_create($date8);
+	$interval8 = date_diff($datetime1, $datetime2);
+	$horas8 = $interval8->format("%H");
+	$dias8 = $interval8->format("%d");
+	$horasdias8  = $dias8 * 24 ;
 
-// REFERENCIA DE OPERACION 20-1
-$datetime1 = date_create($date1);
-$datetime = date_create($date20);
-$interval15 = date_diff($datetime1, $datetime2);
-$horas15 = $interval15->format("%H");
-$dias15 = $interval15->format("%d");
-$horasdias15  = $dias15 * 24 ;
+	// REFERENCIA DE OPERACION 11-8
+	$datetime1 = date_create($date8);
+	$datetime2 = date_create($date11);
+	$interval99 = date_diff($datetime1, $datetime2);
+	$horas99 = $interval99->format("%H");
+	$dias99 = $interval99->format("%d");
+	$horasdias99  = $dias99 * 24 ;
 
-// MODIFICANDO ESTA REGLA PARA SUMAR 1 Y 2
-//$datetime1 = date_create($date1);
-//$datetime2 = date_create($date2);
-//$interval4 = date_diff($datetime1, $datetime2);
-//$horas4 = $interval4->format("%H");
-//$dias4 = $interval4->format("%d");
-//$horasdias4  = $dias4 * 24 ;
+	// REFERENCIA DE OPERACION 13-11
+	$datetime1 = date_create($date11);
+	$datetime2 = date_create($date13);
+	$interval10 = date_diff($datetime1, $datetime2);
+	$horas10 = $interval10->format("%H");
+	$dias10 = $interval10->format("%d");
+	$horasdias10  = $dias10 * 24 ;
 
-// FIN DE SEMANA SABADO Y DOMINGO
-$fines = 0 ;
-$domsab = 0 ;
-$d = 0 ;
-for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
-	{
-		$d++;
-	$dia = date('l',$c);
-		if($dia == 'Saturday'||$dia== 'Sunday'){
-			$fines = 1;
-			$domsab++;
-			if($domsab>2){
-				$fines++;
+	// REFERENCIA DE OPERACION 14-13
+	$datetime1 = date_create($date13);
+	$datetime2 = date_create($date14);
+	$interval11 = date_diff($datetime1, $datetime2);
+	$horas11 = $interval11->format("%H");
+	$dias11 = $interval11->format("%d");
+	$horasdias11  = $dias11 * 24 ;
 
+	// REFERENCIA DE OPERACION 18-14
+	$datetime1 = date_create($date14);
+	$datetime2 = date_create($date18);
+	$interval12 = date_diff($datetime1, $datetime2);
+	$horas12 = $interval12->format("%H");
+	$dias12 = $interval12->format("%d");
+	$horasdias12  = $dias12 * 24 ;
+
+	// REFERENCIA DE OPERACION 19-18
+	$datetime1 = date_create($date18);
+	$datetime2 = date_create($date19);
+	$interval13 = date_diff($datetime1, $datetime2);
+	$horas13 = $interval13->format("%H");
+	$dias13 = $interval13->format("%d");
+	$horasdias13  = $dias13 * 24 ;
+
+	// REFERENCIA DE OPERACION 20-19
+	$datetime1 = date_create($date19);
+	$datetime2 = date_create($date20);
+	$interval14 = date_diff($datetime1, $datetime2);
+	$horas14 = $interval14->format("%H %I %S");
+	$dias14 = $interval14->format("%d");
+	$horasdias14  = $dias14 * 24 ;
+
+	// REFERENCIA DE OPERACION 20-1
+	$datetime1 = date_create($date1);
+	$datetime = date_create($date20);
+	$interval15 = date_diff($datetime1, $datetime2);
+	$horas15 = $interval15->format("%H");
+	$dias15 = $interval15->format("%d");
+	$horasdias15  = $dias15 * 24 ;
+
+	// MODIFICANDO ESTA REGLA PARA SUMAR 1 Y 2
+	//$datetime1 = date_create($date1);
+	//$datetime2 = date_create($date2);
+	//$interval4 = date_diff($datetime1, $datetime2);
+	//$horas4 = $interval4->format("%H");
+	//$dias4 = $interval4->format("%d");
+	//$horasdias4  = $dias4 * 24 ;
+
+	// FIN DE SEMANA SABADO Y DOMINGO
+	$fines = 0 ;
+	$domsab = 0 ;
+	$d = 0 ;
+	for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
+		{
+			$d++;
+		$dia = date('l',$c);
+			if($dia == 'Saturday'||$dia== 'Sunday'){
+				$fines = 1;
+				$domsab++;
+				if($domsab>2){
+					$fines++;
+
+				}
 			}
+
+		
 		}
 
-	
-	}
 
 	
 	$objPHPExcel->setActiveSheetIndex(0)
@@ -691,7 +504,6 @@ for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
 		
 		
 	$suma = $suma + $d;				
->>>>>>> 5435be34e7d2e57b54a97ea71f2019c94c124fb2
 	$column++;
 	$c++;
 
@@ -748,7 +560,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="Rep-Aereo '.$mes.'.xlsx"');
+header('Content-Disposition: attachment;filename="Rep-Aereo '.$mes.'.xls"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');
