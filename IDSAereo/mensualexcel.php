@@ -156,11 +156,12 @@ while($F = mysqli_fetch_array($query)){
 	$pasodieciocho =  mysqli_query($idCone,"SELECT * FROM pasodieciocho WHERE REF LIKE '$ref'");
 	$pasodiecinueve =  mysqli_query($idCone,"SELECT * FROM pasodiecinueve WHERE REF LIKE '$ref'");
 	$pasoveinte =  mysqli_query($idCone,"SELECT * FROM pasoveinte WHERE REF LIKE '$ref'");
-// omitir esta columna si falla asta la llave	
-//	if($R = mysqli_fetch_array($referencias)){
-	//$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
-	//
-	
+
+
+	if($R = mysqli_fetch_array($referencias)){
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$R["NREF"]);	
+		}
+
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
 	$d1;
