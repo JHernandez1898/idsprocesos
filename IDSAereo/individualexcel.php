@@ -61,7 +61,9 @@ $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A4', 'OPERACIÓN')
             ->setCellValue('B4', 'RESPONSABLE')
 			->setCellValue('C4', 'FECHA')
-			->setCellValue('D4', 'INICIALES');
+			->setCellValue('D4', 'INICIALES')
+			->setCellValue('E3', 'FORMATO')
+			->setCellValue('E4', 'L-FO25C');			
 			
 if($R = mysqli_fetch_array($pasouno)){			
 $objPHPExcel->setActiveSheetIndex(0)

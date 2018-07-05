@@ -30,6 +30,7 @@ if($query){
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
         	Notificación
+									(Proceso...#2)
       </h1>
     </div>
     <div class="row">

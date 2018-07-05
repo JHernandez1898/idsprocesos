@@ -15,7 +15,7 @@ $sql =  "SELECT * FROM referencias ORDER BY NREF ASC";
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Reportes
+        	Reportes Maritimo
       </h1>
     </div>
     <div class="row">

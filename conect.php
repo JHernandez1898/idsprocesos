@@ -4,7 +4,7 @@ date_default_timezone_set('America/Mexico_City');
  function conectar(){
 	  $strHost ="localhost";
   $strUsuario = "root";
-  $strClave = "";
+  $strClave = "123";
   $strBaseDeDatos = "idscalidad";
   $idCone = mysqli_connect ($strHost, $strUsuario, $strClave,$strBaseDeDatos) or
            die ("Error conectando al servidor $host con el
@@ -19,7 +19,7 @@ $connectionInfo = array( "Database"=>"Aduana", "UID"=>"masterIDS", "PWD"=>"maste
 $conn = sqlsrv_connect($serverName, $connectionInfo) ;
 
 if( $conn ) {
-     echo "";
+     echo "Conexión con exito....<br />";
 }else{
      echo "Conexión no se pudo establecer.<br />";
      die( print_r( sqlsrv_errors(), true));

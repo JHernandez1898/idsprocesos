@@ -50,7 +50,8 @@ $pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'"
           <tr>
             <td><b>PLAN DE CALIDAD DEL PROCEDIMIENTO DE IMPORTACION<b></td>
             <td>Cliente: <?php echo $F["CLIENTE"]?></td>
-            <td> N° Referencia: <?php echo $F["NREF"]?></td>
+            <td> N° Referencia: <img src="barcode.php?text=<?php echo $F["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /></td>
           </tr>
         </tbody>
       </table>
@@ -206,8 +207,8 @@ $pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'"
             </tr>
             <tr>
               <td>9°</td>
-              <td>Solicitar carda de mercancia</td>
-              <td>Ejecutiva de Trafico/ Asistente de Trafico</td>
+              <td>Solicitar carga de mercancia</td>
+              <td>Ejecutivo de Trafico/ Asistente de Trafico</td>
               <?php if($R = mysqli_fetch_array($pasonueve)){?>
               <td>
 			  

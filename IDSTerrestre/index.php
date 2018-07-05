@@ -38,6 +38,7 @@ echo mysqli_error($idCone);
 
 ?>
 <html>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <head>
 <link href="Recursos/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
@@ -45,7 +46,7 @@ echo mysqli_error($idCone);
 <div class="container">
 	<div class="row">
         <h1 class="page-header" style="text-align: center">
-        PROCEDIMIENTO DE IMPORTACION
+        PROCEDIMIENTO DE IMPORTACION TERRESTRE
         </h1>
     </div>
     
@@ -70,12 +71,18 @@ echo mysqli_error($idCone);
               <thead style="background-color:#699C95">
         	    <tr>
         	      <td>N°</td>
-        	      <td>REFERENCIA</td>
-        	      <td>TIEMPO</td>
-                   <td></td>
-        	      <td></td>
-                  <td>PASO</td>
-                   <td>TIEMPO DESDE FINALIZACIÓN</td>
+        	      <td>Referencia</td>
+				  <td>Cliente</td>
+				   <td>Fecha Inicial</td>
+				  <td>No. Paso</td> 
+        	      <td>Tiempo Inicial</td>
+				  
+				    <td>Pasos Procesados</td>
+					
+                   <td>*Pendientes*</td>
+        	      <td>*Despachados*</td>
+                
+				  <td>Tiempo Finalizado</td>
         	    
       	      </tr>
               </thead>
@@ -84,16 +91,13 @@ echo mysqli_error($idCone);
 			   while($F = mysqli_fetch_array($query)){ ?>
         	    <tr>
         	      <td><?php  echo $s; $s++; ?></td>
-        	      <td><?php  echo $F["NREF"]; ?></td>
-       			  <td>
-
-
-				  
-				  <?php 
-
-
-
-
+        	      <td><img src="barcode.php?text=<?php echo $F["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /></td>
+				<td><?php  echo $F["CLIENTE"]; ?></td>
+				    <td><?php echo date("m-d-Y",$F["FECNUM"]) ?></td>
+					
+                 		  <td><?php  echo $F["PASO"]; ?></td>
+				  <td><?php 
 				   $fecha =  date("Y-m-d",$F["FECNUM"]); 
 				  $date = date("Y-m-d");
 				  $datetime1 = date_create($fecha);
@@ -102,9 +106,31 @@ echo mysqli_error($idCone);
 				  $dias = $interval->format('%a');
 				  echo $dias." dias";
 				  ?></td>
-					  <td>
-                  
-                
+					  
+
+     	     <td><table width="200" border="0">
+        	        <tbody>
+        	          <tr>
+                        <?php 
+						$c = 1;
+						while($c <= 15){
+							
+							if($c < $F["PASO"]){
+								?>
+							 <td bgcolor="#6ADF48"><?php echo $c ?></td>
+							<?php
+							}else{
+							?>
+							 <td bgcolor="#E84D4D"><?php echo $c ?></td>
+							<?php
+							}
+							$c++;
+						}?>	
+
+					</tr>
+      	          </tbody>
+      	        </table></td>
+        	      <td>
                   	<?php 
 					$ref = $F["REF"];
 					
@@ -135,31 +161,8 @@ echo mysqli_error($idCone);
 				  echo "</a>";
                     ?>
                   	</td>
-        	      <td>
-                
-                  <table width="200" border="0">
-        	        <tbody>
-        	          <tr>
-                        <?php 
-						$c = 1;
-						while($c <= 15){
-							
-							if($c < $F["PASO"]){
-								?>
-							 <td bgcolor="#6ADF48"><?php echo $c ?></td>
-							<?php
-							}else{
-							?>
-							 <td bgcolor="#E84D4D"><?php echo $c ?></td>
-							<?php
-							}
-							$c++;
-						}?>
         	           
-        	           
-      	            </tr>
-      	          </tbody>
-      	        </table></td>
+      	        
                    <td>
                    <?php 
 				   $sql =  "SELECT * FROM pasoquince WHERE REF like ".$F['REF']."";
@@ -237,10 +240,10 @@ echo mysqli_error($idCone);
     
 		 echo "Fecha : ".date("m-d-Y"); 
           echo " Hora : ".date("g:i a"); 
-		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2017-11-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
+		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
 		
 		$idsquery = sqlsrv_query($idsCone,$idsql);
-		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2017-11-01'";
+		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'";
 		$qx =  sqlsrv_query($idsCone,$q);
 		$r = 0;
 		while(sqlsrv_fetch_array($qx)){
@@ -292,7 +295,7 @@ echo mysqli_error($idCone);
 							$nombre  = $T["Nom"];
 						}
 			 
-				  		$fe =  $R["traFechaAct"]->format("Y-m-d");
+				  		$fe =  $R["traFechaAct"]->format("Y-d-m");
 				  		$fecnum = strtotime($fe);
 						$mes = date("m") - 1;
 				  		$date =strtotime(date("Y-".$mes."-01"));

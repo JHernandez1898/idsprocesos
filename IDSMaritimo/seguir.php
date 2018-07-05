@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Mexico_City');
 require("Template.php");
 include("conect.php");
 $idCone = conectar();
@@ -12,6 +13,7 @@ $pasocinco =  mysqli_query($idCone,"SELECT * FROM pasocinco WHERE REF LIKE '$ref
 $pasoseis =  mysqli_query($idCone,"SELECT * FROM pasoseis WHERE REF LIKE '$ref'");
 $pasosiete =  mysqli_query($idCone,"SELECT * FROM pasosiete WHERE REF LIKE '$ref'");
 $pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'");
+$pasonueve =  mysqli_query($idCone,"SELECT * FROM pasonueve WHERE REF LIKE '$ref'");
 ?>
 <html>
 <head>
@@ -202,6 +204,28 @@ $pasoocho =  mysqli_query($idCone,"SELECT * FROM pasoocho WHERE REF LIKE '$ref'"
 				else{
 				
 					echo "<a href='paso8.php?ref=$ref'>";
+					echo "<input type='button' class='btn btn-sm btn-success' value='Seguir'>";
+					echo "</a>";
+				}
+				?></td>
+  	        </tr>
+    	      <tr>
+    	        <td>9</td>
+    	        <td>Zarpe de Buque</td>
+    	        <td>
+				<?php 
+				if($F =  mysqli_fetch_array($pasonueve)){
+					
+					$fecha = date("m-d-Y g:i a",$F["UNO"]);
+				
+					echo "Capturado el dia : $fecha <br>";
+					echo "<a href='mod9.php?ref=$ref'>";
+					echo "<input type=button value='modificar' class='btn btn-sm btn-warning'"; 
+					echo "</a>";
+				}
+				else{
+				
+					echo "<a href='paso9.php?ref=$ref'>";
 					echo "<input type='button' class='btn btn-sm btn-success' value='Seguir'>";
 					echo "</a>";
 				}

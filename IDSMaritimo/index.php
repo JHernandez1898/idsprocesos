@@ -18,7 +18,7 @@ $query = mysqli_query($idCone,$mConsulta);
 <body>
 <div class="container">
 	<div class="row">
-	  <h1 class="page-header" style="text-align:center">Procedimiento de embarque maritimo</h1>
+	  <h1 class="page-header" style="text-align:center">Procedimiento de Embarque Maritimo</h1>
 	</div>
     <div class="row">
     	<article class="col-lg-10">
@@ -43,22 +43,32 @@ $query = mysqli_query($idCone,$mConsulta);
        	  <table class="table table-bordered table-striped" width="200" border="1">
         	  <tbody>
         	    <tr style="background-color:#0B799B " >
-        	      <td>REFERENCIA</td>
-        	      <td>CLIENTE</td>
-        	      <td>PASO</td>
-        	      <td>&nbsp;</td>
-        	      <td>&nbsp;</td>
+        	     <td>N°</td>
+				    <td>Referencia</td>
+        	      <td>Cliente</td>
+        	     <td>Fecha Inicial</td>
+        	      <td>No. Paso</td> 
+        	     <td>Tiempo Inicial</td>
+				 <td>*Pendientes*</td>
+				  <td>*Despachados*</td>
+                  <td>Pasos Procesados</td>
+				  <td>Tiempo Finalizado</td>
       	      </tr>
               <?php while($R =  mysqli_fetch_array($query)){ ?>
-        	    <tr>
+			  <tr>
         	      <td><?php echo $R["REF"] ?></td>
+				  <td><img src="barcode.php?text=<?php echo $R["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /></td> 
         	      <td><?php echo $R["CLIENTE"] ?></td>
+				  <td><?php echo date("m-d-Y",$R["FECNUM"]) ?></td>
+				   <td><?php  echo $R["PASO"]; ?></td>
+				   <td>&nbsp;</td>
         	      <td> <table width="200" border="0">
         	        <tbody>
         	          <tr>
                         <?php 
 						$c = 1;
-						while($c <= 8){
+						while($c <= 9){
 							
 							if($c <= $R["PASO"]){
 								?>
@@ -71,7 +81,7 @@ $query = mysqli_query($idCone,$mConsulta);
 							}
 							$c++;
 						}?>
-        	           
+        	           <td>&nbsp;</td>
         	           
       	            </tr>
       	          </tbody>

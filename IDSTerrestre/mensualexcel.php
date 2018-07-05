@@ -2,8 +2,11 @@
 include("conect.php");
 $idCone = conectar();
 $mes =  $_POST["month"];
+$mesnumero =  substr($mes,5,2);
+$año  = substr($mes,0,4);
 $fecnum = strtotime($mes);
-$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
+$final =  strtotime($año."-"."0".($mesnumero + 1));
+$SQL = "SELECT * FROM pasoquince WHERE UNO >='$fecnum' AND UNO < '$final'";
 $query = mysqli_query($idCone,$SQL);
 
 /** Incluye PHPExcel */
@@ -74,12 +77,12 @@ $objPHPExcel->setActiveSheetIndex(0)
 			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('D23', 'Fines de semana')
-			->setCellValue('D25', 'Horas sabados y domingos')
-			->setCellValue('D28', 'Horas no laborales')
-			->setCellValue('D29', 'Deposito a Despacho Horas')
-			->setCellValue('D30', 'Despacho a Facturacion Horas')
-			->setCellValue('D31', 'Recepcion a Facturacion Dias')
-            ->setCellValue('D32', 'Promedio Dias');
+			->setCellValue('D24', 'Horas sabados y domingos')
+			->setCellValue('D25', 'Horas no laborales')
+			->setCellValue('D27', 'Deposito a Despacho Horas')
+			->setCellValue('D28', 'Despacho a Facturacion Horas')
+			->setCellValue('D29', 'Recepcion a Facturacion Dias')
+            ->setCellValue('D31', 'Promedio Dias');
 			
 	
 
@@ -90,6 +93,7 @@ $suma = 0 ;
 while($F = mysqli_fetch_array($query)){
 	$f++;
 	$ref = $F["REF"];
+	$referencias =  mysqli_query($idCone,"SELECT * FROM referencias WHERE REF LIKE '$ref'");
 	$pasouno =  mysqli_query($idCone,"SELECT * FROM pasouno WHERE REF LIKE '$ref'");
 	$pasodos =  mysqli_query($idCone,"SELECT * FROM pasodos WHERE REF LIKE '$ref'");
 	$pasotres =  mysqli_query($idCone,"SELECT * FROM pasotres WHERE REF LIKE '$ref'");
@@ -106,7 +110,11 @@ while($F = mysqli_fetch_array($query)){
 	$pasocatorce =  mysqli_query($idCone,"SELECT * FROM pasocatorce WHERE REF LIKE '$ref'");
 	$pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$ref'");
 	
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$F["NREF"]);
+	if($R = mysqli_fetch_array($referencias)){
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue($column."5",$R["NREF"]);	
+	}
+
+	
 	$objPHPExcel->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
 	$date1;
 	$d1;
@@ -240,6 +248,7 @@ $dias3 = $interval3->format("%d");
 $horasdias3  = $dias3 * 24 ;
 
 
+
 $fines = 0 ;
 $domsab = 0 ;
 $d = 0 ;
@@ -259,14 +268,14 @@ for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
 	
 	}
 	$objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue($column."29",$horas + $horasdias)
-			->setCellValue($column."31",$d)
-			->setCellValue($column."30",$horas2 + $horasdias2);
+			->setCellValue($column."27",$horas + $horasdias)
+			->setCellValue($column."29",$d)
+			->setCellValue($column."28",$horas2 + $horasdias2);
 
   $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue($column."23",$fines)
-			->setCellValue($column."25",$domsab * 24)
-			->setCellValue($column."28",$d * 16);	
+			->setCellValue($column."24",$domsab * 24)
+			->setCellValue($column."25",$d * 16);	
 $suma = $suma + $d;
 
 			 $column = $objPHPExcel->getActiveSheet()->getHighestColumn();
@@ -276,7 +285,7 @@ $suma = $suma + $d;
 
 $promedio  = $suma/$f ;
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue("D33",$promedio." dias");
+			->setCellValue("D32",$promedio." dias");
 
 
 
@@ -284,7 +293,9 @@ $objPHPExcel->setActiveSheetIndex(0)
 
 
 $objPHPExcel->setActiveSheetIndex(0)
-            ->setCellValue('B1', 'Reporte de tiempos de importación')
+			->setCellValue('C2', 'INTERNATIONAL DISPATCH SERVICES, INC')
+            ->setCellValue('C3', 'Reporte de tiempos de importación')
+			->setCellValue('B5', 'N°')
 			->setCellValue('C5', 'OPERACION')
 			->setCellValue('D5', 'RESPONSABLES');
 		
@@ -311,7 +322,7 @@ $styleArray = array('font' => array( 'name' => 'Arial','size' => 10),
 $objPHPExcel->getActiveSheet()->getStyle($rango)->applyFromArray($styleArray);
 
 // Cambiar el nombre de hoja de cálculo
-$objPHPExcel->getActiveSheet()->setTitle('REPORTE '.$mes);
+$objPHPExcel->getActiveSheet()->setTitle('Rep-Terrestre '.$mes);
 
 
 // Establecer índice de hoja activa a la primera hoja , por lo que Excel abre esto como la primera hoja
@@ -319,7 +330,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="Reporte '.$mes.'.xlsx"');
+header('Content-Disposition: attachment;filename="Rep-Terrestre '.$mes.'.xlsx"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');

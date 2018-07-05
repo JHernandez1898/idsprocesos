@@ -43,16 +43,26 @@ $query = mysqli_query($idCone,$mConsulta);
        	  <table class="table table-bordered table-striped" width="200" border="1">
         	  <tbody>
         	    <tr style="background-color:#0B799B " >
-        	      <td>REFERENCIA</td>
-        	      <td>CLIENTE</td>
-        	      <td>PASO</td>
-        	      <td>&nbsp;</td>
-        	      <td>&nbsp;</td>
+        	       <td>N°</td>
+        	      <td>Referencia</td>
+				  <td>Cliente</td>
+				   <td>Fecha Inicial</td>
+				  <td>No. Paso</td> 
+        	      <td>Tiempo Inicial</td>
+                   <td>*Pendientes*</td>
+        	      <td>*Despachados*</td>
+                  <td>Pasos Procesados</td>
+				  <td>Tiempo Finalizado</td>
       	      </tr>
               <?php while($R =  mysqli_fetch_array($query)){ ?>
         	    <tr>
         	      <td><?php echo $R["REF"] ?></td>
+				   <td><img src="barcode.php?text=<?php echo $R["NREF"] ?>
+				   &size=20&orientation=horizontal&codetype=code39&print=true&sizefactor=1" /> </td>
         	      <td><?php echo $R["CLIENTE"] ?></td>
+				  <td><?php echo date("m-d-Y",$R["FECNUM"]) ?></td> 
+				  <td><?php  echo $R["PASO"]; ?></td>
+				  <td>&nbsp;</td>
         	      <td> <table width="200" border="0">
         	        <tbody>
         	          <tr>
@@ -90,7 +100,9 @@ $query = mysqli_query($idCone,$mConsulta);
                   <input type="submit" class=" btn btn-success btn-sm" value="Detalles">
                   </a>
                   </td>
+				  <td>&nbsp;</td>
       	      </tr>
+			  
               <?php   } ?>
       	    </tbody>
       	  </table>

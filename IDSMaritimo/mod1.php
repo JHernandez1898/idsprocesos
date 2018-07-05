@@ -29,7 +29,8 @@ if($query){
 <div class="container">
 	<div class="row">
    	  <h1 class="page-header" style="text-align:center">
-        	Recepcion de documentos y mercancias
+        	Recepcion de documentos y mercancias 
+						(Proceso...#1)
       </h1>
     </div>
     <div class="row">
@@ -50,7 +51,7 @@ if($query){
           <tr>
             <td><p>
               <label for="datetime">Fecha y Hora:</label>
-              <input type="datetime-local" value="<?php echo date('Y-m-d\TH:i');?>"  name="uno" class="input-sm" required>
+              <input type="datetime-local" value="<?php echo date('Y-d-m\TH:i');?>"  name="uno" class="input-sm" required>
             </p></td>
             <td>
             <select  class="input-sm" name="inicialesuno" required>
