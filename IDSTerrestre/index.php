@@ -17,14 +17,21 @@ $criterio = isset($_GET["criterio"]);
 $TAMANO_PAGINA = 10; 
 
 //examino la página a mostrar y el inicio del registro a mostrar 
-$pagina = $_GET["pagina"]; 
-if (!$pagina) { 
-   	$inicio = 0; 
-   	$pagina=1; 
-} 
-else { 
+if(isset($_GET["pagina"])){
+    $pagina = $_GET["pagina"]; 
+    if (!$pagina) { 
+   	    $inicio = 0; 
+   	    $pagina=1; 
+    } 
+    else { 
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
+    }
 }
+else{
+    $pagina =1;
+    $inicio = ($pagina - 1) * $TAMANO_PAGINA; 
+}
+
 //$sql =  "SELECT *  FROM referencias A JOIN pasouno B ON (A.REF = B.REF) ORDER BY PASO ASC LIMIT $inicio,10";
 $sql =  "SELECT *  FROM referencias ORDER BY PASO ASC LIMIT $inicio,10";
 $query = mysqli_query($idCone,$sql);
@@ -238,22 +245,28 @@ echo mysqli_error($idCone);
 			$TAMANO_PAGINA = 10; 
 			
 			//examino la página a mostrar y el inicio del registro a mostrar 
-			$pagina = $_GET["paginax"]; 
-			if (!$pagina) { 
-				$inicio = 0; 
-				$pagina=1; 
-			} 
-			else { 
-				$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
-			}
+			if(isset($_GET["paginax"])){
+                $pagina = $_GET["paginax"];
+			     if (!$pagina) { 
+                     $inicio = 0; 
+				    $pagina=1; 
+			     } 
+			     else { 
+				    $inicio = ($pagina - 1) * $TAMANO_PAGINA; 
+			     }
+            }
+            else{
+                $pagina=1; 
+                $inicio = ($pagina - 1) * $TAMANO_PAGINA; 
+            }
 					
     
 		 echo "Fecha Actual: ".date("m-d-Y"); 
           echo " & Hora : ".date("g:i a"); 
-		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01' ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
+		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01' AND traReferencia LIKE 'IDS%'  AND traCli !='722' ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
 		
 		$idsquery = sqlsrv_query($idsCone,$idsql);
-		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'";
+		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01' AND traReferencia LIKE 'IDS%'";
 		$qx =  sqlsrv_query($idsCone,$q);
 		$r = 0;
 		while(sqlsrv_fetch_array($qx)){
@@ -347,7 +360,7 @@ echo mysqli_error($idCone);
 		$c = 1;
 		while($c<$total_paginas){
 			
-			echo "<a href='index.php?pagina=1&&paginax=$c'><button class='btn btn-sm btn-default'>  Pagina # $c</button></a>"; 
+			echo "<a href='index.php?pagina=1&&paginax=$c'><button class='btn btn-sm btn-default'>$c</button></a>"; 
 			
 			$c++;
 		}
