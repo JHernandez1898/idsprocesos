@@ -8,24 +8,25 @@
 <div class="div">
 <nav id="nav" role="navigation"> <a href="#nav" title="Show navigation">Show navigation</a> <a href="#" title="Hide navigation">Hide navigation</a>
       <ul class="clearfix">
-    <li><a href="index.php?pagina=1&&paginax=1">Home</a></li>
+    <li><a href="index.php?pagina=1&&paginax=1&&fecha='2019-01-01'&">Home</a></li>
     <li> <a href=""><span>Despacho Terrestre</span></a>
           <ul>
-        <li><a href="index.php?pagina=1&&paginax=1">Importacion</a></li>
-        <li><a href="">Exportacion</a></li>
+        <li><a href="/idsProcesos/idsTerrestre/index.php">Importación</a></li>
+        <li><a href="">Exportación</a></li>
+		<li><a href="..\idsEB-S\reportes.php?pagina=1&&paginax=1">EB'S</a></li>
       </ul>
         </li>
     <li> <a href=""><span>Despacho Maritimo</span></a>
           <ul>
-        <li><a href="../idsMaritimo/index.php">Importacion</a></li>
-        <li><a href="">Exportacion</a></li>
+        <li><a href="/idsProcesos/idsMaritimo/index.php">Importación</a></li>
+        <li><a href="">Exportación</a></li>
        
       </ul>
         </li>
          <li> <a href=""><span>Despacho Aereo</span></a>
           <ul>
-        <li><a href="../IdsAereo/index.php">Importacion</a></li>
-        <li><a href="">Exportacion</a></li>
+        <li><a href="/idsProcesos/idsAereo/index.php">Importación</a></li>
+        <li><a href="">Exportación</a></li>
        
       </ul>
         </li>

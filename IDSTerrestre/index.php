@@ -4,7 +4,7 @@ session_start();
 include("Template.php");
 require("conect.php");
 
-
+$fecha=isset($get["fecha"]);
 $idCone =  conectar();
 $max = "SELECT MAX(REF) as mr FROM referencias";
 $maxquery =  mysqli_query($idCone,$max);
@@ -25,10 +25,11 @@ if (!$pagina) {
 else { 
    	$inicio = ($pagina - 1) * $TAMANO_PAGINA; 
 }
+//$sql =  "SELECT *  FROM referencias A JOIN pasouno B ON (A.REF = B.REF) ORDER BY PASO ASC LIMIT $inicio,10";
 $sql =  "SELECT *  FROM referencias ORDER BY PASO ASC LIMIT $inicio,10";
 $query = mysqli_query($idCone,$sql);
 
-$q = "SELECT * FROM referencias";
+$q = "SELECT * FROM referencias ";
 $qx =  mysqli_query($idCone,$q);
 $num_total_registros = mysqli_num_rows($qx); 
 //calculo el total de páginas 
@@ -73,7 +74,8 @@ echo mysqli_error($idCone);
         	      <td>N°</td>
         	      <td>Referencia</td>
 				  <td>Cliente</td>
-				   <td>Fecha Inicial</td>
+        	     <td>Fecha Captura</td>
+				 <td>Fecha Inicial</td>
 				  <td>No. Paso</td> 
         	      <td>Tiempo Inicial</td>
 				  
@@ -96,6 +98,11 @@ echo mysqli_error($idCone);
 				<td><?php  echo $F["CLIENTE"]; ?></td>
 				    <td><?php echo date("m-d-Y",$F["FECNUM"]) ?></td>
 					
+					<td><?php echo date("m-d-Y",$F["FECNUM"]) ?></td>				
+		
+					
+					
+					
                  		  <td><?php  echo $F["PASO"]; ?></td>
 				  <td><?php 
 				   $fecha =  date("Y-m-d",$F["FECNUM"]); 
@@ -108,7 +115,7 @@ echo mysqli_error($idCone);
 				  ?></td>
 					  
 
-     	     <td><table width="200" border="0">
+     	     <td><table width="200" border="1">
         	        <tbody>
         	          <tr>
                         <?php 
@@ -193,7 +200,9 @@ echo mysqli_error($idCone);
    	for ($i=1;$i<=$total_paginas;$i++){ 
       	if ($pagina == $i) {
          	//si muestro el índice de la página actual, no coloco enlace 
+			echo "Pagina # "; 
          	echo $pagina . " "; 
+			
 		}
 		
       	else {
@@ -201,6 +210,7 @@ echo mysqli_error($idCone);
          	echo "<a href='index.php?pagina=$i&&paginax=1'>";
 			?> <input type="button" class="btn btn-default btn-sm" value="<?php echo $i ?>"  width="10" height="10"><?php
 			echo "</a>"; 
+			
 		}
    	} 
 }
@@ -238,9 +248,9 @@ echo mysqli_error($idCone);
 			}
 					
     
-		 echo "Fecha : ".date("m-d-Y"); 
-          echo " Hora : ".date("g:i a"); 
-		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'   ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
+		 echo "Fecha Actual: ".date("m-d-Y"); 
+          echo " & Hora : ".date("g:i a"); 
+		$idsql = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01' ORDER BY traFechaAct DESC OFFSET $inicio ROWS FETCH NEXT $TAMANO_PAGINA ROWS ONLY";
 		
 		$idsquery = sqlsrv_query($idsCone,$idsql);
 		$q = "SELECT * FROM dbo.Trafico WHERE traFechaAct > '2018-01-01'";
@@ -262,14 +272,14 @@ echo mysqli_error($idCone);
           <table class="table table-bordered table-striped"  width="200" border="1">
             <tbody>
               <tr>
-                <td>&nbsp;</td>
+                <td>No.</td>
                 <td>Cliente</td>
                 <td>Referencia</td>
                 <td>Embarque</td>
                 <td>Pedimento</td>
                 <td>Subdivisiones</td>
                
-                <td>&nbsp;</td>
+                <td>Agregar</td>
               </tr>
               <?php
 			  if($pagina>1){
@@ -336,7 +346,9 @@ echo mysqli_error($idCone);
 		
 		$c = 1;
 		while($c<$total_paginas){
-			echo "<a href='index.php?pagina=1&&paginax=$c'><button class='btn btn-sm btn-default'> $c</button></a>"; 
+			
+			echo "<a href='index.php?pagina=1&&paginax=$c'><button class='btn btn-sm btn-default'>  Pagina # $c</button></a>"; 
+			
 			$c++;
 		}
 		?>

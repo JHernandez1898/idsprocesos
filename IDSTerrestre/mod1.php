@@ -30,6 +30,8 @@ if($query){
 <title>Untitled Document</title>
 <link href="Recursos/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
+
+			   
 <body>
 <div class="container">
 	<div class="row">
@@ -61,7 +63,7 @@ if($query){
 *Etiquetar bultos con código de control (EB).</span></td>
             <td><p>
               <label for="datetime">Fecha y Hora:</label>
-              <input type="datetime-local" value="<?php echo date('Y-d-m\TH:i',$M["FECUNO"]);?>"  name="uno" class="input-sm" required>
+              <input type="datetime-local" value="<?php echo date('Y-m-d\TH:i',$M["FECUNO"]);?>"  name="uno" class="input-sm" required>
             </p></td>
             <td>
             <select  class="input-sm" value = "<?php echo $M["INIUNO"]; ?>" name="inicialesuno" required>
@@ -79,7 +81,7 @@ if($query){
             <td height="50"><span class="alert-info text-info" style="text-align:left">*Recepcion de Documentos </span></td>
             <td><p>
               <label for="datetime-local">Fecha y Hora:</label>
-              <input type="datetime-local" class="input-sm" value = "<?php echo date('Y-d-m\TH:i',$M["FECDOS"])?>" name="fechados" required>
+              <input type="datetime-local" class="input-sm" value = "<?php echo date('Y-m-d\TH:i',$M["FECDOS"])?>" name="fechados" required>
             </p></td>
             <td><select  class="input-sm" name="inicialesdos" required>
             <?php 

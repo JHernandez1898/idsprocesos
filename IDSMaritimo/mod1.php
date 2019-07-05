@@ -51,7 +51,7 @@ if($query){
           <tr>
             <td><p>
               <label for="datetime">Fecha y Hora:</label>
-              <input type="datetime-local" value="<?php echo date('Y-d-m\TH:i');?>"  name="uno" class="input-sm" required>
+              <input type="datetime-local" value="<?php echo date('Y-m-d\TH:i');?>"  name="uno" class="input-sm" required>
             </p></td>
             <td>
             <select  class="input-sm" name="inicialesuno" required>

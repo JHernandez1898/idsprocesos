@@ -5,9 +5,13 @@ $mes =  $_POST["month"];
 $mesnumero =  substr($mes,5,2);
 $año  = substr($mes,0,4);
 $fecnum = strtotime($mes);
-$final =  strtotime($año."-"."0".($mesnumero + 1));
-$SQL = "SELECT * FROM pasoquince WHERE UNO >='$fecnum' AND UNO < '$final'";
+
+if($mesnumero <= 8)$final =  strtotime($año."-"."0".($mesnumero + 1));
+else if($mesnumero<12) $final =  strtotime($año."-".($mesnumero + 1));
+else $final =  strtotime(($año+1)."-01-01");
+$SQL = "SELECT * FROM pasoquince WHERE UNO BETWEEN '$fecnum' AND '$final'";
 $query = mysqli_query($idCone,$SQL);
+
 
 /** Incluye PHPExcel */
 require_once("Recursos/excel/PHPExcel/PHPExcel/Classes/PHPExcel.php");
@@ -43,23 +47,23 @@ $objPHPExcel->setActiveSheetIndex(0)
 			
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('C6', 'Recepción de Mercancías y Documentos')
-			->setCellValue('C7', 'Revisión')
-			->setCellValue('C8', 'Tráfico')
+			->setCellValue('C7', 'Revisión de Mercancías')
+			->setCellValue('C8', 'Tráfico Revision de Documentos')
             ->setCellValue('C9', 'Clasificación')
-            ->setCellValue('C10', 'Tráfico')
-			->setCellValue('C11', 'Revisión del pedimento')
-			->setCellValue('C12', 'Confirmar depositos y equipo')
-			->setCellValue('C13', 'Validacion del pedimento')
-			->setCellValue('C14', 'Preparar documentos de importación')
+            ->setCellValue('C10', 'Tráfico preparar documentos de importacion')
+			->setCellValue('C11', 'Revisión de Nota')
+			->setCellValue('C12', 'Captura de Pedimento')
+			->setCellValue('C13', 'Revision de Pedimento')
+			->setCellValue('C14', 'Confirmar Deposito y Equipo')
 			->setCellValue('C15', 'Validacion del pedimento')
-			->setCellValue('C16', 'Preparar documentos de importación')
+			->setCellValue('C16', 'Preparar documentos de salida')
 			->setCellValue('C17', 'Solicitar carga de mercancía')
             ->setCellValue('C18', 'Carga de mercancía')
             ->setCellValue('C19', 'Despacho de embarque')
 			->setCellValue('C20', 'Facturacion de cuenta de gastos americana');
 			
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue('D6', 'Jefe de Bodefa/\rEjecutivo de Tráfico')
+			->setCellValue('D6', 'Jefe de Bodefa /Ejecutivo de Tráfico')
 			->setCellValue('D7', 'Revisador')
 			->setCellValue('D8', 'Ejecutivo de Tráfico')
             ->setCellValue('D9', 'Clasificador')
@@ -67,7 +71,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('D11', 'Gerente')
 			->setCellValue('D12', 'Ejecutivo de trafico')
 			->setCellValue('D13', 'Gerente / Ejecutivo de Tráfico')
-			->setCellValue('D14', 'Ejecutivo de Tráfico \r/ Asistente de Tráfico')
+			->setCellValue('D14', 'Ejecutivo de Tráfico / Asistente de Tráfico')
 			->setCellValue('D15', 'Ejecutivo de Tráfico / Asistente de Tráfico')
 			->setCellValue('D16', 'Ejecutivo de Tráfico / Asistente de Tráfico')
 			->setCellValue('D17', 'Ejecutivo de Tráfico')
@@ -256,11 +260,13 @@ for($c = $d1 ;$c<=$d15;$c = $c= $c+86400)
 	{
 		$d++;
 	$dia = date('l',$c);
-		if($dia == 'Saturday'||$dia== 'Sunday'){
+		if($dia == 'Saturday'||$dia== 'Sunday')
+	{
 			$fines = 1;
 			$domsab++;
-			if($domsab>2){
-				$fines++;
+			if($domsab>2)
+	{
+			$fines++;
 
 			}
 		}
@@ -283,7 +289,13 @@ $suma = $suma + $d;
 	$c++;	
 }
 
+
+$f=0;
+if($f==0)
+{	
+$f=1;	
 $promedio  = $suma/$f ;
+}
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue("D32",$promedio." dias");
 
@@ -330,7 +342,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="Rep-Terrestre '.$mes.'.xlsx"');
+header('Content-Disposition: attachment;filename="Rep-Terrestre '.$mes.'"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');
@@ -344,4 +356,5 @@ header ('Pragma: public'); // HTTP/1.0
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 $objWriter->save('php://output');
 exit;
+
  ?>

@@ -5,8 +5,13 @@ $mes =  $_POST["month"];
 $mesnumero =  substr($mes,5,2);
 $año  = substr($mes,0,4);
 $fecnum = strtotime($mes);
-$final =  strtotime($año."-"."0".($mesnumero + 1));
-$SQL = "SELECT * FROM pasoveinte WHERE UNO >='$fecnum' AND UNO < '$final'";
+$final =  strtotime($año."-"."0".($mesnumero + 1)); // se agrego este 27/12/2018 *JLR
+if($mesnumero <= 8)$final =  strtotime($año."-"."0".($mesnumero + 1));
+else if($mesnumero<12) $final =  strtotime($año."-".($mesnumero + 1));
+else $final =  strtotime(($año+1)."-01-01");
+
+$SQL = "SELECT * FROM pasodieciocho WHERE UNO BETWEEN '$fecnum' AND '$final'";
+//$SQL = "SELECT * FROM pasouno WHERE UNO BETWEEN '$fecnum' AND '$final'";
 //$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
 $query = mysqli_query($idCone,$SQL);
 
@@ -128,7 +133,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 	
 
 $c = 6 ;
-$f  =0;
+$f  = 1;
 $column = 'F';
 $suma = 0 ;
 while($F = mysqli_fetch_array($query)){
@@ -565,7 +570,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="Rep-Aereo '.$mes.'.xls"');
+header('Content-Disposition: attachment;filename="Rep-Aereo '.$mes.'"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');

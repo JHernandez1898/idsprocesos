@@ -6,7 +6,17 @@ $mesnumero =  substr($mes,5,2);
 $año  = substr($mes,0,4);
 $fecnum = strtotime($mes);
 $final =  strtotime($año."-"."0".($mesnumero + 1));
-$SQL = "SELECT * FROM pasonueve WHERE UNO >='$fecnum' AND UNO < '$final'";
+if($mesnumero <= 8)$final =  strtotime($año."-"."0".($mesnumero + 1));
+else if($mesnumero<12) $final =  strtotime($año."-".($mesnumero + 1));
+else $final =  strtotime(($año+1)."-01-01");
+$SQL = "SELECT * FROM pasonueve WHERE UNO BETWEEN '$fecnum' AND '$final'";
+
+//$SQL = "SELECT * FROM pasodieciocho WHERE UNO BETWEEN '$fecnum' AND '$final'";
+// no funciona correctamente no trae los meses de octubre, sept y noviembre 
+///$SQL = "SELECT * FROM pasonueve WHERE UNO >='$fecnum' AND UNO < '$final'";
+
+// ok ..... funciona bien .... $SQL = "SELECT * FROM pasoquince WHERE UNO BETWEEN '$fecnum' AND '$final'";
+
 //$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
 $query = mysqli_query($idCone,$SQL);
 
@@ -77,7 +87,7 @@ $objPHPExcel->setActiveSheetIndex(0)
 	
 
 $c = 6 ;
-$f  =0;
+$f  = 1;
 $column = 'F';
 $suma = 0 ;
 while($F = mysqli_fetch_array($query)){
@@ -342,8 +352,7 @@ $objPHPExcel->getActiveSheet()->getDefaultStyle()->getAlignment()->setWrapText(t
 
 $rango="B5:D14"; // esta lineamarca el borde de las celdas que quiero marcar
 $styleArray = array('font' => array( 'name' => 'Arial','size' => 10),
-'borders'=>array('allborders'=>array('style'=> PHPExcel_Style_Border::BORDER_THIN,'color'=>array('argb' => 'FFF')))
-);
+'borders'=>array('allborders'=>array('style'=> PHPExcel_Style_Border::BORDER_THIN,'color'=>array('argb' => 'FFF'))));
 $objPHPExcel->getActiveSheet()->getStyle($rango)->applyFromArray($styleArray);
 
 // Cambiar el nombre de hoja de cálculo
@@ -355,7 +364,7 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 // Redirigir la salida al navegador web de un cliente ( Excel5 )
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="Rep-Maritimo '.$mes.'.xlsx"');
+header('Content-Disposition: attachment;filename="Rep-Maritimo '.$mes.'"');
 header('Cache-Control: max-age=0');
 // Si usted está sirviendo a IE 9 , a continuación, puede ser necesaria la siguiente
 header('Cache-Control: max-age=1');

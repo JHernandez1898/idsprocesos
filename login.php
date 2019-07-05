@@ -71,7 +71,7 @@ if($_POST){
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						<input class="input100" type="password" name="password" placeholder="Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock"></i>
@@ -89,12 +89,28 @@ if($_POST){
 						</a>
 					</div>
 
+				
+
+
+					
 					<div class="text-center w-full">
 						<a class="txt1" href="#">
 							Create new account
 							<i class="fa fa-long-arrow-right"></i>						
 						</a>
 					</div>
+					
+					
+					<div class="text-center w-full">					
+			<HEAD>
+<STYLE type="text/css">
+P#mipar {font-style: italic; color: blue}
+</STYLE>
+</HEAD>
+<P id="mipar"> <i><small><b>Developed by: Ti Outsourcing Solution, LCC. / Ver: 1.1 @ 2018.11.09</b></small></i>
+
+
+		</div>					
 				</form>
 			</div>
 		</div>

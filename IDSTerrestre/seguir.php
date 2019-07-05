@@ -26,12 +26,19 @@ $pasoquince =  mysqli_query($idCone,"SELECT * FROM pasoquince WHERE REF LIKE '$r
 </title>
 <link href="Recursos/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
+
+
 <div class="container">
 	<div class="row">
     	<h1 class="page-header"> Seguimiento </h1>
+		
+				
     </div>
-    
+    		
+
+
 	<div class="row">
     	<article class="col-lg-7">
     	  <table width="200"  class="table table-bordered table-striped" border="1">
