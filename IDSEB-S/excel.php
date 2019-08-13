@@ -16,7 +16,10 @@ WHERE TBLMT.BODFECHA BETWEEN '$fecha' AND '$fechaLimite'";
 
 //$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
 $query = sqlsrv_query($idsCone,$SQL);
-
+$fecha =  new DateTime($fecha);
+$fechaLimite = new DateTime($fechaLimite);
+$fecha = $fecha ->format('m/d/y');
+$fechaLimite  = $fechaLimite ->format('m/d/y');
 /** Incluye PHPExcel */
 require_once("Recursos/excel/PHPExcel/PHPExcel/Classes/PHPExcel.php");
 // Crear nuevo objeto PHPExcel
@@ -55,7 +58,7 @@ while($R = sqlsrv_fetch_array($query)){
 				$fecha = $R["BODFECHA"];
 				$hora = $R["TRAFICO"];
 				$aduana = $R["TRAADUANA"];
-$result = $fecha->format('d/m/y');
+$result = $fecha->format('m/d/y');
 	
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue("B".$CELDA, $c)
