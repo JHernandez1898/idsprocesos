@@ -115,7 +115,7 @@ WHERE TBLMT.BODFECHA BETWEEN '$fecha' AND '$fechaLimite'";
 				$fecha = $R["BODFECHA"];
 				$hora = $R["TRAFICO"];
 				$aduana = $R["TRAADUANA"];
-$result = $fecha->format('Y-m-d');
+$result = $fecha->format('m-d-Y');
 
 			
 					   $c++;
