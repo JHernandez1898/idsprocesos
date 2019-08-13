@@ -9,15 +9,9 @@ TRAFICO,TRAADUANA
 FROM TBLMT LEFT JOIN CLIENTES ON TBLMT.BODCLI = CLIENTES.CLIENTE_ID
 LEFT JOIN TRAFICO ON TBLMT.REFASIGNADA = TRAFICO.TRAREFERENCIA
 WHERE TBLMT.BODFECHA BETWEEN '$fecha' AND '$fechaLimite'";
-
-$fecha = $fecha->format('m/d/Y');
-$fechalimite = $fechalimite -> format('m/d/Y');
-
-
 //$SQL = "SELECT * FROM pasodieciocho WHERE UNO BETWEEN '$fecnum' AND '$final'";
 // no funciona correctamente no trae los meses de octubre, sept y noviembre 
 ///$SQL = "SELECT * FROM pasonueve WHERE UNO >='$fecnum' AND UNO < '$final'";
-
 // ok ..... funciona bien .... $SQL = "SELECT * FROM pasoquince WHERE UNO BETWEEN '$fecnum' AND '$final'";
 
 //$SQL = "SELECT * FROM referencias WHERE FECNUM >='$fecnum'";
