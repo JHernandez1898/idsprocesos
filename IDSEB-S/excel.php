@@ -37,13 +37,12 @@ $objPHPExcel->getProperties()->setCreator("IDS")
 
 $objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('B2', 'Fecha Inicial: '.$fecha)
-			->setCellValue('C2', 'Fecha Final: '.$fechaLimite)			
-			->setCellValue('B3', 'Referencia')
+			->setCellValue('C2', 'Fecha Final: '.$fechaLimite)	
+            ->setCellValue('B3', 'Referencia')
 			->setCellValue('C3', 'Cliente')
-			->setCellValue('D3', 'Referencia')
-            ->setCellValue('E3', 'Fecha')
-            ->setCellValue('F3', 'Hora')
-			->setCellValue('G3', 'Aduana');
+            ->setCellValue('D3', 'Fecha')
+            ->setCellValue('E3', 'Hora')
+			->setCellValue('F3', 'Aduana');
 
 			
 	
@@ -58,15 +57,14 @@ while($R = sqlsrv_fetch_array($query)){
 				$fecha = $R["BODFECHA"];
 				$hora = $R["TRAFICO"];
 				$aduana = $R["TRAADUANA"];
-$result = $fecha->format('m/d/y');
+$result = $fecha->format('d-M-y');
 	
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue("B".$CELDA, $c)
-			->setCellValue("C".$CELDA, $nombre)
-			->setCellValue("D".$CELDA, $referencia)
-            ->setCellValue("E".$CELDA, $result)
-            ->setCellValue("F".$CELDA,$hora)
-			->setCellValue("G".$CELDA,$aduana);
+			->setCellValue("B".$CELDA,$referencia)
+			->setCellValue("C".$CELDA,$nombre)
+            ->setCellValue("D".$CELDA, $result)
+            ->setCellValue("E".$CELDA,$hora)
+			->setCellValue("F".$CELDA,$aduana);
 			$column++;
 	
 	}
